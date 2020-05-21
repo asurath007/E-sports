@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="slot_array">
+        <item>...</item>
+        <item>Map 1 - Time 1</item>
+        <item>Map 1 - Time 2</item>
+        <item>Map 1 - Time 3</item>
+        <item>Map 2 - Time 1</item>
+        <item>Map 2 - Time 2 </item>
+        <item>Map 3 - Time 1</item>
+        <item>Map 3 - Time 2</item>
+    </string-array>
+
+    <string-array name="map_array">
+        <item>...</item>
+        <item>Erangel</item>
+        <item>Miramar</item>
+        <item>Sanhok</item>
+        <item>Vikendi</item>
+        <item>Warehouse</item>
+
+    </string-array>
+
+    <string-array name = "match_type">
+        <item> </item>
+        <item>SOLO</item>
+        <item>DUO</item>
+        <item>SQUAD</item>
+        <item>TDM</item>
+    </string-array>
+</resources>

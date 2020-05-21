@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1067137038439",
+    "firebase_url": "https://myknot-gaming.firebaseio.com",
+    "project_id": "myknot-gaming",
+    "storage_bucket": "myknot-gaming.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067137038439:android:9141bffd5a625d9872bcc2",
+        "android_client_info": {
+          "package_name": "com.art.myknot_gaming"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067137038439-ieejol9ufng3kpntk7aiilh6to81pnp8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcZcEeQXWDmv6Y7uMPkYZEYRUmyeAxFXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067137038439-ieejol9ufng3kpntk7aiilh6to81pnp8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

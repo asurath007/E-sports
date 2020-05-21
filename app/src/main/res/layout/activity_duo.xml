@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:padding="5dp"
+    tools:context=".Registration.Duo">
+    <TextView
+        android:id="@+id/tv_duo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:text="@string/duo_details"
+        />
+    <ProgressBar
+        android:id="@+id/duo_progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminate="true"
+        android:visibility="gone"
+        />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        app:cardCornerRadius="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:id="@+id/tv_duo_match_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/match_type"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="RtlSymmetry" />
+
+            <View
+                android:id="@+id/AH1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/tv_duo_match_title"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:id="@+id/LL1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/AH1"
+                android:layout_alignParentStart="true"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/map"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/tv_duo_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/map"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="5dp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/VH1"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@+id/LL1"
+                android:layout_alignBottom="@+id/LL1"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/LL1"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:id="@+id/LL2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/AH1"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/VH1"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mode"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/tv_duo_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mode"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LL3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/AH1"
+                android:layout_alignEnd="@id/VH2"
+                android:layout_marginEnd="15dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/tv_duo_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/VH2"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@+id/LL4"
+                android:layout_alignEnd="@id/LL4"
+                android:layout_alignBottom="@+id/LL4"
+                android:layout_marginEnd="60dp"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:id="@+id/LL4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:layout_below="@+id/AH1"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/tv_duo_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/AH2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/LL1"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:id="@+id/LL5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/AH2"
+                android:layout_alignParentStart="true"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/winnings"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/tv_duo_prizeMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/winnings"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LL6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/AH2"
+                android:gravity="center"
+                android:layout_toStartOf="@+id/LL7"
+                android:layout_toEndOf="@+id/LL5"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/money_break_up"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/tv_duo_moneyBreakUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/money_break_up"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LL7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/AH2"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entry_fee"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/tv_duo_entryFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entry_fee"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+            <ProgressBar
+                android:id="@+id/match_status"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/LL5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/match_status"
+                android:text="@string/player_joined"
+                android:textSize="10sp"
+                tools:ignore="RtlSymmetry,SmallSp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/match_status"
+                android:text="@string/player_remaining"
+                android:textSize="10sp"
+                tools:ignore="RtlSymmetry,SmallSp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_gravity="center">
+
+
+        <EditText
+            android:id="@+id/et_duo_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:inputType="textPersonName"
+            android:hint="@string/team_name"
+            android:autofillHints="Team Name"
+            />
+
+        <EditText
+            android:id="@+id/et_duo_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:inputType="textPersonName"
+            android:hint="@string/leader_in_game_name"
+            android:autofillHints="Team leader"
+            />
+
+        <EditText
+            android:id="@+id/et_duo_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:inputType="textPersonName"
+            android:hint="@string/_2_in_game_name"
+            android:autofillHints="Player 2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_slot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@string/select_a_slot"
+                />
+
+            <Spinner
+                android:id="@+id/spinner_duo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textAlignment="center"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_duo_submit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/confirm_pay"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="50dp"
+            />
+    </LinearLayout>
+</LinearLayout>

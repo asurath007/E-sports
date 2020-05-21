@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+    <ImageView
+        android:id="@+id/iv_logo_home"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/myknot_gaming_logo"
+        android:contentDescription="@string/organiser_logo" />
+
+    <TextView
+        android:id="@+id/tv_aim_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_logo_home"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:text="@string/home_fragment_text"
+        android:textAlignment="center"
+        android:textColor="@color/colorTextPrimary" />
+
+    <View
+        android:id="@+id/divider1_home"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="2dp"
+        android:layout_below="@id/tv_aim_home"
+        android:background="?android:attr/listDivider" />
+
+    <GridLayout
+        android:id="@+id/gl_home"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/divider1_home"
+        android:layout_above="@+id/divider2_home"
+        android:alignmentMode="alignMargins"
+        android:rowCount="2"
+        android:columnCount="2"
+        android:columnOrderPreserved="false"
+        android:padding="10dp"
+        >
+        <!--r1c1-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/c1_home"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:background = "@drawable/myknot_gaming_logo">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pubg"/>
+            <ImageView
+                android:id="@+id/iv_pubg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_pubg2"
+                android:alpha="0.8"
+                /></LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <!--r1c2-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/c2_home"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:padding="5dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            android:layout_margin="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cod"/>
+            <ImageView
+                android:id="@+id/iv_cod"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_cod"
+                android:alpha="0.8"/></LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <!--r2c1-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/c3_home"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:padding="5dp"
+            android:layout_columnWeight="1"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            android:layout_margin="5dp"
+            android:background = "@drawable/myknot_gaming_logo">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="..3.."/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                /></LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <!--r2c2-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/c4_home"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:padding="5dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            android:layout_margin="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="..4.."/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                /></LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
+
+    <View
+        android:id="@+id/divider2_home"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:layout_above="@+id/tv_support_home"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/tv_support_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/table_home"
+        android:text="@string/tv_home_sharing"
+        android:textAlignment="center" />
+
+    <TableRow
+        android:id="@+id/table_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/home_nav_bar"
+        android:layout_centerHorizontal="true"
+
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_home_whatsapp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/icons8_whatsapp_50_3" />
+
+        <Button
+            android:id="@+id/btn_home_instagram"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/icons8_instagram_50_3" />
+
+        <Button
+            android:id="@+id/btn_home_discord"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/icons8_discord_50" />
+
+        <Button
+            android:id="@+id/btn_home_website"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/icons8_link_50" />
+
+        <Button
+            android:id="@+id/btn_home_donate"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/icons8_community_grants_50" />
+    </TableRow>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/home_nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu"  />
+</RelativeLayout>

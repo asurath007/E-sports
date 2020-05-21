@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:textAlignment="center"
+    android:padding="2dp"
+    android:layout_margin="5dp"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="1dp"
+        android:elevation="5dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:id="@+id/dtv_admin_match_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/match_type"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/dtv_admin_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/dtv_admin_match_title"
+                android:layout_toStartOf="@+id/table_1"
+                android:layout_marginEnd="20dp"
+                android:text="TYPE"
+                android:textSize="14sp" />
+
+            <TableRow
+                android:id="@+id/table_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btn_edit"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@drawable/ic_edit_black_36dp"
+                    tools:ignore="ButtonStyle" />
+                <Button
+                    android:id="@+id/btn_delete"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/ic_delete_black_24dp"
+                    tools:ignore="ButtonStyle" />
+            </TableRow>
+
+            <View
+                android:id="@+id/AH1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/dtv_admin_match_title"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:id="@+id/LL1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/AH1"
+                android:layout_alignParentStart="true"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_admin_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/map"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/dtv_admin_edit_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/map"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="5dp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/VH1"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@+id/LL1"
+                android:layout_alignBottom="@+id/LL1"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/LL1"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:id="@+id/LL2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/AH1"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/VH1"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_admin_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mode"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/dtv_admin_edit_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mode"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LL3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/AH1"
+                android:layout_alignEnd="@id/VH2"
+                android:layout_marginEnd="15dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_admin_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/dtv_admin_edit_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/VH2"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@+id/LL4"
+                android:layout_alignEnd="@id/LL4"
+                android:layout_alignBottom="@+id/LL4"
+                android:layout_marginEnd="60dp"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:id="@+id/LL4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/AH1"
+                android:layout_marginEnd="5dp"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_admin_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/dtv_admin_edit_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/AH2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/LL1"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:id="@+id/LL5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/AH2"
+                android:layout_alignParentStart="true"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_admin_prizeMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/winnings"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/dtv_admin_edit_prizeMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/winnings"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LL6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/AH2"
+                android:gravity="center"
+                android:layout_toStartOf="@+id/LL7"
+                android:layout_toEndOf="@+id/LL5"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_admin_moneyBreakUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/money_break_up"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/dtv_admin_edit_moneyBreakUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/money_break_up"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LL7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/AH2"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_admin_entryFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entry_fee"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/dtv_admin_edit_entryFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entry_fee"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+            <ProgressBar
+                android:id="@+id/d_admin_statusBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/LL5"/>
+
+            <TextView
+                android:id="@+id/tv_admin_playerJoined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/d_admin_statusBar"
+                android:text="@string/player_joined"
+                android:textSize="10sp"
+                tools:ignore="RtlSymmetry,SmallSp" />
+
+            <TextView
+                android:id="@+id/tv_admin_playerRemaining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/d_admin_statusBar"
+                android:text="@string/player_remaining"
+                android:textSize="10sp"
+                tools:ignore="RtlSymmetry,SmallSp" />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:elevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
+
+            <LinearLayout
+                android:id="@+id/LL_A"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp">
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/room_id"
+                    android:textSize="18sp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:layout_marginStart="10dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LL_B"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@id/LL_A">
+
+                <TextView
+                    android:id="@+id/tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:textSize="18sp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:layout_marginStart="10dp"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryLight"
+        android:text="SEND TO ALL"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorPrimary"
+        />
+</LinearLayout>

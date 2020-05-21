@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="15dp"
+        android:backgroundTint="@color/colorPrimary"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="25dp">
+
+            <TextView
+                android:id="@+id/tv_alert"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:text="@string/are_you_sure"
+                android:textAlignment="center"
+                android:textColor="@color/colorBorder"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_alert"
+                android:layout_alignStart="@+id/tv_alert"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="35dp"
+                android:background="@color/colorPrimaryLight"
+                android:text="@string/no"
+                android:textColor="@color/colorPrimary"/>
+
+            <Button
+                android:id="@+id/btn_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_alert"
+                android:layout_alignEnd="@+id/tv_alert"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="0dp"
+                android:background="@color/colorPrimaryLight"
+                android:text="@string/yes"
+                android:textColor="@color/colorPrimary"/>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
