@@ -9,16 +9,13 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Notifications"></activity>
-        <activity android:name=".DashBoard.DashBoard" />
-        <activity android:name=".Profile" />
-
         <meta-data
             android:name="com.razorpay.ApiKey"
             android:value="rzp_test_sveeJOH5WzkLWY" /> <!-- [START fcm_disable_auto_init] -->
@@ -33,39 +30,43 @@
             android:resource="@drawable/app_icon" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" /> <!-- actvities -->
+            android:resource="@color/colorAccent" />
+        <!-- actvities -->
+        <activity android:name=".Notifications.Notifications" />
+        <activity android:name=".DashBoard.DashBoard" android:label="Dashboard"/>
+        <activity android:name=".Profile" android:label="Profile"/>
         <activity
             android:name=".Registration.Solo"
-            android:parentActivityName=".Registration.SoloMapSelector" />
+            android:parentActivityName=".Registration.SoloMapSelector" android:label="Solo"/>
         <activity
             android:name=".Registration.Duo"
-            android:parentActivityName=".Registration.DuoMapSelector" />
+            android:parentActivityName=".Registration.DuoMapSelector" android:label="Duo"/>
         <activity
             android:name=".Registration.Squad"
-            android:parentActivityName=".Registration.SquadMapSelector" />
+            android:parentActivityName=".Registration.SquadMapSelector" android:label="Squad"/>
         <activity
             android:name=".Registration.SoloMapSelector"
-            android:parentActivityName=".Main2Activity" />
+            android:parentActivityName=".Main2Activity" android:label="Solo"/>
         <activity
             android:name=".Registration.SquadMapSelector"
-            android:parentActivityName=".Main2Activity" />
+            android:parentActivityName=".Main2Activity" android:label="Squad"/>
         <activity
             android:name=".Registration.DuoMapSelector"
-            android:parentActivityName=".Main2Activity" />
+            android:parentActivityName=".Main2Activity" android:label="Duo"/>
         <activity
             android:name=".Admin.AdminAddMatch"
             android:label="@string/title_activity_admin_add_match"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Payment.RazorPay_Activity" />
-        <activity android:name=".AfterPayment.AfterPayment" />
+        <activity android:name=".AfterPayment.AfterPayment" android:parentActivityName=".DashBoard.DashBoard"/>
         <activity
             android:name=".AfterPayment.AfterPaymentDetail"
             android:parentActivityName=".AfterPayment.AfterPayment" />
         <activity android:name=".Admin.AdminAddMatchDetail" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".Login.SignUp" />
-        <activity android:name=".Login.LogIn" />
+        <activity android:name=".Login.SignUp" android:label="MyKnot Gaming - Signup"/>
+        <activity android:name=".Login.LogIn" android:label="MyKnot Gaming - Login"/>
         <activity android:name=".StartScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -73,6 +74,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- [START firebase_service] -->
+        <!-- [END firebase_service] -->
     </application>
 
 </manifest>

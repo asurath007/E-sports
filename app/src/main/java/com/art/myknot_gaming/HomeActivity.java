@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.art.myknot_gaming.DashBoard.DashBoard;
+import com.art.myknot_gaming.Notifications.Notifications;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
@@ -59,6 +60,7 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
                         startActivity(new Intent(HomeActivity.this, DashBoard.class));finish();
                         break;
                     case R.id.navigation_notifications:
+                        startActivity(new Intent(HomeActivity.this, Notifications.class));
                         break;
                     case R.id.navigation_profile:
                         startActivity(new Intent(HomeActivity.this, Profile.class));finish();
@@ -118,14 +120,14 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
             @Override
             public void onClick(View v) {
                 Intent web = new Intent(Intent.ACTION_VIEW);
-                String url = "https://dragonballzs.000webhostapp.com/?name=Gowtham+kumar+D&mobile=9353690229";
+                String url = "https://myknot-pubggaming.online/";
                 web.setData(Uri.parse(url));
                 web.setPackage("com.android.chrome");
 
                 if (isIntentAvailable(mContext, web)){
                     startActivity(web);
                 } else{
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://dragonballzs.000webhostapp.com/?name=Gowtham+kumar+D&mobile=9353690229")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://myknot-pubggaming.online/")));
                 }
             }
         });

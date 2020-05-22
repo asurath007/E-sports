@@ -1,6 +1,7 @@
 package com.art.myknot_gaming.AfterPayment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,7 +101,18 @@ public class AfterPaymentAdapter extends RecyclerView.Adapter<AfterPaymentAdapte
 
             int position = getAdapterPosition();
             MapList list = mapList.get(position);
+            Intent intent = new Intent(context, AfterPaymentDetail.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("name",list.getName());
+            intent.putExtra("map",list.getMap());
+            intent.putExtra("date",list.getDate());
+            intent.putExtra("time",list.getTime());
+            intent.putExtra("pm",list.getPrizeMoney());
+            intent.putExtra("ef",list.getEntryFee());
+            intent.putExtra("mbu",list.getMoneyBreakUp());
+            intent.putExtra("mode",list.getMode());
 
+            context.startActivity(intent);
         }
     }
 

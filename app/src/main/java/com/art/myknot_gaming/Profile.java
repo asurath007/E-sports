@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.art.myknot_gaming.DashBoard.DashBoard;
 import com.art.myknot_gaming.Login.LogIn;
+import com.art.myknot_gaming.Notifications.Notifications;
 import com.art.myknot_gaming.Util.UserDetail;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -48,6 +49,7 @@ public class Profile extends AppCompatActivity {
     private TextView userEmail,userName, tv_fn,tv_ln,tv_pun,tv_cun,tv_gun,tv_mobile;
     private ProgressBar prof_progress;
     private ImageView img_prof;
+    String userID = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +94,7 @@ public class Profile extends AppCompatActivity {
 
 
         nav_bar = findViewById(R.id.prof_nav_bar);
-
+        nav_bar.setSelectedItemId(R.id.navigation_profile);
         nav_bar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -104,6 +106,7 @@ public class Profile extends AppCompatActivity {
                         startActivity(new Intent(Profile.this, DashBoard.class));finish();
                         break;
                     case R.id.navigation_notifications:
+                        startActivity(new Intent(Profile.this, Notifications.class));finish();
                         break;
                     case R.id.navigation_profile:
 //                        Toast.makeText(Profile.this,"Profile Page", Toast.LENGTH_SHORT).show();
@@ -153,8 +156,9 @@ public class Profile extends AppCompatActivity {
                 String un = userName.getText().toString().trim();
                 String email = userEmail.getText().toString().trim();
                 String no = mobile.getText().toString().trim();
+                String id = userID;
 
-                final Map<String,Object> updateUser = new UserDetail(email,no,un,nfn,nln,pun,cun).newUser();
+                final Map<String,Object> updateUser = new UserDetail(email,no,id,un,nfn,nln,pun,cun).newUser();
                 userRef.document(uID).set(updateUser)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -188,6 +192,7 @@ public class Profile extends AppCompatActivity {
                     tv_ln.setText(doc.getString("LastName"));
                     tv_pun.setText(doc.getString("PUBG"));
                     tv_cun.setText(doc.getString("COD"));
+                    userID = (doc.getString("userId"));
                     //et fields to get data
                     firstName.setText(doc.getString("FirstName"));
                     mobile.setText(doc.getString("Mobile No"));

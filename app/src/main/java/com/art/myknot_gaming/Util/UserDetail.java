@@ -47,9 +47,10 @@ public class UserDetail {
         this.PUBGUserName = pun;
         this.CODUserName = cun;
     }
-    public UserDetail(String email,String mobile, String userName, String fn, String ln , String pun, String cun) {
+    public UserDetail(String email,String mobile,String id, String userName, String fn, String ln , String pun, String cun) {
         this.userEmail = email;
         this.userName = userName;
+        this.id  = id;
         this.mobile = mobile;
         this.firstName = fn;
         this.lastName = ln;

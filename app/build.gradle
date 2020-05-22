@@ -1,3 +1,4 @@
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
@@ -11,7 +12,11 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
+        manifestPlaceholders = [
+                onesignal_app_id: 'e6383fac-b85c-4d7d-8f8c-2314ecba53d4',
+                // Project number pulled from dashboard, local value is ignored.
+                onesignal_google_project_number: 'REMOTE'
+        ]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -25,6 +30,7 @@ android {
 }
 repositories {
     mavenCentral()
+    maven { url 'https://maven.google.com' }
 }
 
 dependencies {
@@ -32,6 +38,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -49,4 +56,10 @@ dependencies {
     //razorpay
     implementation 'com.razorpay:checkout:1.5.13'
     implementation 'com.google.firebase:firebase-database:19.3.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    //notifications - FCM
+    implementation 'com.google.firebase:firebase-messaging:20.2.0'
+//    implementation 'androidx.work:work-runtime:2.3.4'
+    //one-signal
+    implementation 'com.onesignal:OneSignal:3.13.2'
 }

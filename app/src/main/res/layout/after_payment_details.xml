@@ -43,7 +43,7 @@
             tools:ignore="RtlSymmetry">
 
             <TextView
-                android:id="@+id/tv_af_solo_match_title"
+                android:id="@+id/tv_afd_solo_match_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -61,7 +61,7 @@
                 android:layout_height="1dp"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="5dp"
-                android:layout_below="@id/tv_af_solo_match_title"
+                android:layout_below="@id/tv_afd_solo_match_title"
                 android:background="?android:attr/listDivider" />
 
             <LinearLayout
@@ -79,7 +79,7 @@
                     android:textSize="12sp"
                     tools:ignore="RtlSymmetry" />
                 <TextView
-                    android:id="@+id/tv_solo_map"
+                    android:id="@+id/tv_afd_solo_map"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/map"
@@ -114,7 +114,7 @@
                     android:textSize="12sp"
                     tools:ignore="RtlSymmetry" />
                 <TextView
-                    android:id="@+id/tv_solo_mode"
+                    android:id="@+id/tv_afd_solo_mode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mode"
@@ -138,7 +138,7 @@
                     android:textSize="12sp"
                     tools:ignore="RtlSymmetry" />
                 <TextView
-                    android:id="@+id/tv_solo_date"
+                    android:id="@+id/tv_afd_solo_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/date"
@@ -172,7 +172,7 @@
                     android:textSize="12sp"
                     tools:ignore="RtlSymmetry" />
                 <TextView
-                    android:id="@+id/tv_solo_time"
+                    android:id="@+id/tv_afd_solo_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/time"
@@ -205,7 +205,7 @@
                     android:textSize="14sp"
                     tools:ignore="RtlSymmetry" />
                 <TextView
-                    android:id="@+id/tv_solo_prizeMoney"
+                    android:id="@+id/tv_afd_solo_prizeMoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/winnings"
@@ -231,7 +231,7 @@
                     android:textSize="14sp"
                     tools:ignore="RtlSymmetry" />
                 <TextView
-                    android:id="@+id/tv_solo_moneyBreakUp"
+                    android:id="@+id/tv_afd_solo_moneyBreakUp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -255,7 +255,7 @@
                     android:textSize="14sp"
                     tools:ignore="RtlSymmetry" />
                 <TextView
-                    android:id="@+id/tv_solo_entryFee"
+                    android:id="@+id/tv_afd_solo_entryFee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/entry_fee"
@@ -263,7 +263,7 @@
                     tools:ignore="RtlSymmetry" />
             </LinearLayout>
             <ProgressBar
-                android:id="@+id/solo_match_status"
+                android:id="@+id/solo_afd_match_status"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -273,7 +273,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_below="@id/solo_match_status"
+                android:layout_below="@id/solo_afd_match_status"
                 android:text="@string/player_joined"
                 android:textSize="10sp"
                 tools:ignore="RtlSymmetry,SmallSp" />
@@ -282,7 +282,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@+id/solo_match_status"
+                android:layout_below="@+id/solo_afd_match_status"
                 android:text="@string/player_remaining"
                 android:textSize="10sp"
                 tools:ignore="RtlSymmetry,SmallSp" />
@@ -323,7 +323,7 @@
                     android:text="Room ID"
                     />
                 <TextView
-                    android:id="@+id/tv_solo_room_id"
+                    android:id="@+id/tv_solo_afd_room_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
@@ -356,7 +356,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold"/>
                 <TextView
-                    android:id="@+id/tv_solo_password"
+                    android:id="@+id/tv_solo__afd_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
