@@ -1,20 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Notifications.Notifications"
+    android:layout_margin="5dp"
     >
 
-    <EditText
-        android:id="@+id/not_tv"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/myknot_gaming_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="5dp"/>
+
+    <LinearLayout
+        android:id="@+id/not_ll"
+        android:layout_below="@id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal">
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="10dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/not_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recent_notifications"/>
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:background="?android:attr/listDivider" />
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/not_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/not_nav_bar"
+        android:layout_below="@+id/not_ll"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="@id/not_nav_bar"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/not_display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_above="@+id/not_nav_bar"
+        android:layout_below="@+id/not_ll"
+        android:layout_alignParentBottom="@id/not_nav_bar"
+        android:text="@string/no_new_notifications"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/not_nav_bar"
@@ -25,4 +74,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

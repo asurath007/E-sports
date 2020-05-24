@@ -34,9 +34,11 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.onesignal.OneSignal;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -263,20 +265,14 @@ public class Solo extends AppCompatActivity implements AdapterView.OnItemSelecte
                 Toast.makeText(Solo.this, "Updating Payment Status failed\nPlease check after sometime", Toast.LENGTH_LONG).show();
             }
         });
-        //subscribe to message channel
-        FirebaseMessaging.getInstance().subscribeToTopic(id)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = getString(R.string.msg_subscribed);
-                        if (!task.isSuccessful()) {
-                            msg = getString(R.string.msg_subscribe_failed);
-                        }
-                        Log.d(TAG, msg);
-                        Toast.makeText(Solo.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
+//        //subscribe to message channel
+        JSONObject tags = new JSONObject();
+        try {
+            tags.put(uID,true);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        OneSignal.sendTags(tags);
     }
 
 

@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,27 +31,39 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.onesignal.OSPermissionSubscriptionState;
+import com.onesignal.OneSignal;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.Map;
+import java.util.Scanner;
+
+import io.grpc.okhttp.internal.framed.Header;
 
 public class AdminAddMatchDetail extends AppCompatActivity {
 
     private static final String TAG = "AdminAddMatchDetails";
     private static final String[] MAPS = new String[]{"ERANGEL", "MIRAMAR", "SANHOK", "VIKENDI", "TDM"};
-    private static final String[] MODES = new String[]{"TPP","FPP"};
-    private static final String[] TYPE = new String[]{"SOLO","DUO","SQUAD"};
+    private static final String[] MODES = new String[]{"TPP", "FPP"};
+    private static final String[] TYPE = new String[]{"SOLO", "DUO", "SQUAD"};
     private AlertDialog dialog;
     private AlertDialog.Builder dialogBuilder;
+    private EditText roomId, roomPwd;
 
-    private String id = "";
-    private TextView entryFee,time, date,mode,map,title,prizeMoney,type,moneyBreakUp;
-    private EditText et_title,et_date,et_time,et_prizeMoney,et_entryFee,et_moneyBreakUp;
-    private Button btn_edit,btn_delete, btn_send,btn_time,btn_date;
-    private AutoCompleteTextView et_map,et_mode,et_type;
-    private int mDate,mMonth,mYear,mHour,mMinute;
-    
-    
+    private String id = "",not_title="";
+    private TextView entryFee, time, date, mode, map, title, prizeMoney, type, moneyBreakUp;
+    private EditText et_title, et_date, et_time, et_prizeMoney, et_entryFee, et_moneyBreakUp;
+    private Button btn_edit, btn_delete, btn_send, btn_time, btn_date;
+    private AutoCompleteTextView et_map, et_mode, et_type;
+    private int mDate, mMonth, mYear, mHour, mMinute;
+
+
     private FirebaseFirestore firestoreDB = FirebaseFirestore.getInstance();
     private CollectionReference matchRef = firestoreDB.collection("Match List");
     private DocumentReference matchDetail = firestoreDB.document("Match List/Match id");
@@ -62,7 +75,7 @@ public class AdminAddMatchDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_add_match_detail);
 
-        title =findViewById(R.id.dtv_admin_match_title);
+        title = findViewById(R.id.dtv_admin_match_title);
         map = findViewById(R.id.dtv_admin_edit_map);
         mode = findViewById(R.id.dtv_admin_edit_mode);
         date = findViewById(R.id.dtv_admin_edit_date);
@@ -71,12 +84,14 @@ public class AdminAddMatchDetail extends AppCompatActivity {
         moneyBreakUp = findViewById(R.id.dtv_admin_edit_moneyBreakUp);
         prizeMoney = findViewById(R.id.dtv_admin_edit_prizeMoney);
         entryFee = findViewById(R.id.dtv_admin_edit_entryFee);
-        btn_edit =findViewById(R.id.btn_edit);
-        btn_delete=findViewById(R.id.btn_delete);
-        btn_send=findViewById(R.id.btn_send);
+        btn_edit = findViewById(R.id.btn_edit);
+        btn_delete = findViewById(R.id.btn_delete);
+        btn_send = findViewById(R.id.btn_send);
+        roomId = findViewById(R.id.et_aad_id);
+        roomPwd = findViewById(R.id.et_aad_pwd);
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null){
+        if (bundle != null) {
             id = bundle.getString("UId");
             title.setText(bundle.getString("UName"));
             map.setText(bundle.getString("UMap"));
@@ -87,8 +102,10 @@ public class AdminAddMatchDetail extends AppCompatActivity {
             moneyBreakUp.setText(bundle.getString("UMoneyBreakUp"));
             prizeMoney.setText(bundle.getString("UPrizeMoney"));
             entryFee.setText(bundle.getString("UEntryFee"));
+            not_title = bundle.getString("UName");
+            Log.d(TAG,"title:"+not_title+"\n"+id);
         }
-            Log.d("adminAddDetails","Id:"+id);
+        Log.d("adminAddDetails", "Id:" + id);
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,10 +124,58 @@ public class AdminAddMatchDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //send notification
+//                OSPermissionSubscriptionState status = OneSignal.getPermissionSubscriptionState();
+//                String userId = status.getSubscriptionStatus().getUserId();
+//                boolean isSubscribed = status.getSubscriptionStatus().getSubscribed();
+//                Log.d(TAG,"oneId:"+userId);
+//                Log.d(TAG,"sub:"+isSubscribed);
+//                textView.setText("Subscription Status, is subscribed:" + isSubscribed);
+
+//                if (!isSubscribed)
+//                    return;
+                OneSignal.idsAvailable(new OneSignal.IdsAvailableHandler() {
+                    @Override
+                    public void idsAvailable(final String userId, String registrationId) {
+                        Log.d(TAG, "UserId:" + userId);
+                        if (registrationId != null) {
+                            final String msg  = "Room ID: " + roomId.getText().toString().trim() + "\n"
+                                    + "Password: " + roomPwd.getText().toString().trim();
+                            Log.d(TAG, "registrationId:" + registrationId + "\n"+not_title);
+                            OneSignal.getTags(new OneSignal.GetTagsHandler() {
+                                @Override
+                                public void tagsAvailable(JSONObject tags) {
+                                    //tags can be null
+                                    if (tags != null) {
+                                        String tagId = tags.toString();
+                                        Log.d(TAG, "tagID:" + tagId);
+                                        try {
+                                            OneSignal.postNotification(new JSONObject("{'headings': {'en': '"+not_title+"'}, 'contents': {'en': '"+ msg +"'},'include_segments': ['" + tagId + "'], 'include_player_ids': ['" + userId + "']}"),
+                                                    new OneSignal.PostNotificationResponseHandler() {
+                                                        @Override
+                                                        public void onSuccess(JSONObject response) {
+                                                            Log.i(TAG, "postNotification Success: " + response.toString());
+                                                        }
+                                                        @Override
+                                                        public void onFailure(JSONObject response) {
+                                                            Log.e(TAG, "postNotification Failure: " + response.toString());
+                                                        }
+                                                    });
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
             }
+
         });
 
+
     }
+
 
     private void deletePopup() {
         dialogBuilder = new AlertDialog.Builder(this);
@@ -139,6 +204,8 @@ public class AdminAddMatchDetail extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Deleting Failed", Toast.LENGTH_LONG).show();
                     }
                 });
+
+                OneSignal.deleteTag(id);
                 dialog.dismiss();
                 startActivity(new Intent(AdminAddMatchDetail.this, AdminAddMatch.class));
             }

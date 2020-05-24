@@ -23,7 +23,7 @@ public class UserDetail {
     private String userName;
     private String userEmail;
     private static UserDetail instance;
-    private List<String>MatchRegistered;
+    private List<String>MatchRegistered,Notifications;
 
     public UserDetail(String email, String userName, String currentUserId) {
         this.userEmail = email;
@@ -79,6 +79,7 @@ public class UserDetail {
         user.put("PUBG",PUBGUserName);
         user.put("COD",CODUserName);
         user.put("MatchRegistered","");
+        user.put("Notifications","");
 //        user.put("ID",id);
 //        user.put();
 
@@ -142,5 +143,11 @@ public class UserDetail {
     }
 
 
+    public List<String> getNotifications() {
+        return Notifications;
+    }
 
+    public void setNotifications(List<String> notifications) {
+        Notifications = notifications;
+    }
 }

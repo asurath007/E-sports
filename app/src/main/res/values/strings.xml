@@ -105,5 +105,8 @@
     <!-- [END fcm_default_icon_string] -->
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
     <string name="fcm_message">FCM Message</string>
+    <string name="recent_notifications">Recent Notifications</string>
+    <string name="no_new_notifications">- No New Notifications -</string>
+    <string name="msg_welcome">Welcome message</string>
 
 </resources>
