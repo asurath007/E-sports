@@ -60,7 +60,7 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
                         startActivity(new Intent(HomeActivity.this, DashBoard.class));finish();
                         break;
                     case R.id.navigation_notifications:
-                        startActivity(new Intent(HomeActivity.this, Notifications.class));
+                        startActivity(new Intent(HomeActivity.this, Notifications.class));finish();
                         break;
                     case R.id.navigation_profile:
                         startActivity(new Intent(HomeActivity.this, Profile.class));finish();

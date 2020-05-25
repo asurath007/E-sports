@@ -15,47 +15,69 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="com.onesignal.NotificationOpened.DEFAULT"
+        <activity android:name=".Admin.AdminLogin" android:label="Admin Sign-in" android:parentActivityName=".Login.LogIn"/>
+        <activity android:name=".Admin.IntroAdmin" android:label="MyKnot Gaming Partnership" android:parentActivityName=".Admin.AdminLogin"/>
+
+        <meta-data
+            android:name="com.onesignal.NotificationOpened.DEFAULT"
             android:value="DISABLE" />
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_sveeJOH5WzkLWY" />
-        <!-- actvities -->
-        <activity android:name=".Notifications.Notifications" />
-        <activity android:name=".DashBoard.DashBoard" android:label="Dashboard"/>
-        <activity android:name=".Profile" android:label="Profile"/>
+            android:value="rzp_test_sveeJOH5WzkLWY" /> <!-- actvities -->
+        <activity android:name=".Notifications.Notifications"
+            android:label="Notifications"/>
+        <activity
+            android:name=".DashBoard.DashBoard"
+            android:label="Dashboard" />
+        <activity
+            android:name=".Profile"
+            android:label="Profile" />
         <activity
             android:name=".Registration.Solo"
-            android:parentActivityName=".Registration.SoloMapSelector" android:label="Solo"/>
+            android:label="Solo"
+            android:parentActivityName=".Registration.SoloMapSelector" />
         <activity
             android:name=".Registration.Duo"
-            android:parentActivityName=".Registration.DuoMapSelector" android:label="Duo"/>
+            android:label="Duo"
+            android:parentActivityName=".Registration.DuoMapSelector" />
         <activity
             android:name=".Registration.Squad"
-            android:parentActivityName=".Registration.SquadMapSelector" android:label="Squad"/>
+            android:label="Squad"
+            android:parentActivityName=".Registration.SquadMapSelector" />
         <activity
             android:name=".Registration.SoloMapSelector"
-            android:parentActivityName=".Main2Activity" android:label="Solo"/>
+            android:label="Solo"
+            android:parentActivityName=".Main2Activity" />
         <activity
             android:name=".Registration.SquadMapSelector"
-            android:parentActivityName=".Main2Activity" android:label="Squad"/>
+            android:label="Squad"
+            android:parentActivityName=".Main2Activity" />
         <activity
             android:name=".Registration.DuoMapSelector"
-            android:parentActivityName=".Main2Activity" android:label="Duo"/>
+            android:label="Duo"
+            android:parentActivityName=".Main2Activity" />
         <activity
             android:name=".Admin.AdminAddMatch"
-            android:label="@string/title_activity_admin_add_match"
+            android:label="Admin Panel"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Payment.RazorPay_Activity" />
-        <activity android:name=".AfterPayment.AfterPayment" android:parentActivityName=".DashBoard.DashBoard"/>
+        <activity
+            android:name=".AfterPayment.AfterPayment"
+            android:parentActivityName=".DashBoard.DashBoard" />
         <activity
             android:name=".AfterPayment.AfterPaymentDetail"
             android:parentActivityName=".AfterPayment.AfterPayment" />
-        <activity android:name=".Admin.AdminAddMatchDetail" />
-        <activity android:name=".Main2Activity" android:parentActivityName=".HomeActivity"/>
+        <activity android:name=".Admin.AdminAddMatchDetail" android:label="Match Details" android:parentActivityName=".Admin.AdminAddMatch"/>
+        <activity
+            android:name=".Main2Activity"
+            android:parentActivityName=".HomeActivity" android:label="Game Modes"/>
         <activity android:name=".HomeActivity" />
-        <activity android:name=".Login.SignUp" android:label="MyKnot Gaming - Signup"/>
-        <activity android:name=".Login.LogIn" android:label="MyKnot Gaming - Login"/>
+        <activity
+            android:name=".Login.SignUp"
+            android:label="MyKnot Gaming - Signup" />
+        <activity
+            android:name=".Login.LogIn"
+            android:label="MyKnot Gaming - Login" />
         <activity android:name=".StartScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -63,8 +85,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- [START firebase_service] -->
-        <!-- [END firebase_service] -->
     </application>
 
 </manifest>

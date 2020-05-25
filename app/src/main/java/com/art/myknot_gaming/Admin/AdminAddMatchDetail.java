@@ -40,6 +40,7 @@ import org.json.JSONObject;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 import java.util.Scanner;
@@ -137,6 +138,9 @@ public class AdminAddMatchDetail extends AppCompatActivity {
                     @Override
                     public void idsAvailable(final String userId, String registrationId) {
                         Log.d(TAG, "UserId:" + userId);
+                        String[] id = new String[2];
+                        id[0]= userId;
+                        id[1]= "83c7ed3c-875d-464f-a44b-4ef8b11d8d58";
                         if (registrationId != null) {
                             final String msg  = "Room ID: " + roomId.getText().toString().trim() + "\n"
                                     + "Password: " + roomPwd.getText().toString().trim();
@@ -149,7 +153,8 @@ public class AdminAddMatchDetail extends AppCompatActivity {
                                         String tagId = tags.toString();
                                         Log.d(TAG, "tagID:" + tagId);
                                         try {
-                                            OneSignal.postNotification(new JSONObject("{'headings': {'en': '"+not_title+"'}, 'contents': {'en': '"+ msg +"'},'include_segments': ['" + tagId + "'], 'include_player_ids': ['" + userId + "']}"),
+                                            String eID="83c7ed3c-875d-464f-a44b-4ef8b11d8d58";
+                                            OneSignal.postNotification(new JSONObject("{'headings': {'en': '"+not_title+"'}, 'contents': {'en': '"+ msg +"'}, 'include_player_ids': ['" + userId + "']}"),
                                                     new OneSignal.PostNotificationResponseHandler() {
                                                         @Override
                                                         public void onSuccess(JSONObject response) {

@@ -5,13 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.art.myknot_gaming.R;
@@ -38,11 +46,11 @@ public class SignUp extends AppCompatActivity {
     private EditText signUp_password;
     private Button btn_signUp;
     private ProgressBar signUp_progressBar;
-
+    private TextView signup_consent;
+    private CheckBox signup_check;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser currentUser;
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("Users");
 
@@ -59,7 +67,8 @@ public class SignUp extends AppCompatActivity {
         signUp_email = findViewById(R.id.signup_email);
         signUp_password = findViewById(R.id.signup_password);
         signUp_progressBar = findViewById(R.id.signup_progressBar);
-
+        signup_check = findViewById(R.id.signin_check);
+        signup_consent = findViewById(R.id.signin_consent);
         btn_signUp = findViewById(R.id.btn_signup);
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -74,6 +83,40 @@ public class SignUp extends AppCompatActivity {
                 }
             }
         };
+        //set textview to open website
+        btn_signUp.setEnabled(false);
+        String text = "I agree with the Privacy Policy and Terms of Service of MyKnot Gaming Services";
+        SpannableString ss = new SpannableString(text);
+        ClickableSpan clickableSpan1 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://myknot-pubggaming.online/public/privacy.html")));
+            }
+        };
+        ClickableSpan clickableSpan2 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://myknot-pubggaming.online/public/terms.html")));
+            }
+        };
+        ss.setSpan(clickableSpan1,17,31, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(clickableSpan2,36,52,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        signup_consent.setText(ss);
+        signup_consent.setMovementMethod(LinkMovementMethod.getInstance());
+
+        signup_check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()){
+                    btn_signUp.setEnabled(true);
+                    btn_signUp.setBackgroundColor(getColor(R.color.colorPrimaryLight));
+                }else{
+                    btn_signUp.setEnabled(false);
+                    btn_signUp.setBackgroundColor(getColor(R.color.colorTextSecondary));
+                    Toast.makeText(SignUp.this, "Please agree with our Privacy Policy & Terms of Service to continue", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         btn_signUp.setOnClickListener(new View.OnClickListener() {
             @Override

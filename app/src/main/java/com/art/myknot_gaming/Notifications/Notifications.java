@@ -56,15 +56,15 @@ public class Notifications extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.navigation_home:
-                        startActivity(new Intent(Notifications.this, HomeActivity.class));
+                        startActivity(new Intent(Notifications.this, HomeActivity.class));finish();
                     case R.id.navigation_dashboard:
-                        startActivity(new Intent(Notifications.this, DashBoard.class));
+                        startActivity(new Intent(Notifications.this, DashBoard.class));finish();
                         break;
                     case R.id.navigation_notifications:
 //                        Toast.makeText(Notifications.this,"Notifications Page", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.navigation_profile:
-                        startActivity(new Intent(Notifications.this, Profile.class));
+                        startActivity(new Intent(Notifications.this, Profile.class));finish();
                         break;
                 }
                 return false;

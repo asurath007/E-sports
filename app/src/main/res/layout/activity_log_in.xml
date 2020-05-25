@@ -1,35 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:padding="16dp"
     tools:context=".Login.LogIn">
+    <ImageView
+        android:id="@+id/iv1"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/myknot_gaming_logo"
+        />
+    <LinearLayout
+        android:id="@+id/acct_login_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/iv1"
+        android:gravity="center"
+        >
 
     <ProgressBar
         android:id="@+id/login_progressBar"
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/signed_out"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:visibility="gone"
-        android:layout_marginBottom="10dp"/>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/email_login_form"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        />
 
         <AutoCompleteTextView
             android:id="@+id/login_email"
@@ -39,6 +38,7 @@
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:maxLines="1"
+            android:layout_marginTop="20dp"
             android:outlineAmbientShadowColor="@color/colorPrimaryLight"
             android:textColor="@color/colorTextPrimary"
             android:textColorHint="@color/colorTextSecondary"
@@ -48,7 +48,6 @@
             android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:backgroundTint="@color/colorPrimaryLight"
             android:hint="@string/password"
             android:inputType="textPassword"
@@ -59,21 +58,36 @@
             android:textSize="20sp"
             android:autofillHints="@string/password" />
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+            <CheckBox
+                android:id="@+id/login_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/login_consent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/login_consent"/>
+        </LinearLayout>
         <Button
             android:id="@+id/btn_login"
             android:text="@string/login"
             android:textColor="@color/colorPrimary"
-            android:background="@color/colorPrimaryLight"
-            android:layout_marginTop="16dp"
+            android:background="@color/colorTextSecondary"
+            android:layout_marginTop="20dp"
             android:textSize="16sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:clickable="false"/>
 
         <TextView
             android:text="@string/or"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,19 +103,17 @@
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
 
-
-    </LinearLayout>
-
     <TextView
         android:id="@+id/host_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimaryLight"
         android:textAlignment="center"
         android:text="@string/join_as_a_host"
         android:layout_marginTop="30dp"
-        android:textSize="20sp"
+        android:textSize="18sp"
         />
 
 
 </LinearLayout>
+</RelativeLayout>

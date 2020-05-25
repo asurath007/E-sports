@@ -15,7 +15,6 @@
         android:layout_height="200dp"
         android:src="@drawable/myknot_gaming_logo"
         />
-
     <LinearLayout
         android:id="@+id/acct_signup_form"
         android:layout_width="match_parent"
@@ -36,8 +35,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/username"
             android:inputType="textPersonName"
-
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:outlineAmbientShadowColor="@color/colorPrimaryLight"
             android:textColor="@color/colorTextPrimary"
             android:textColorHint="@color/colorTextSecondary"
@@ -49,7 +47,6 @@
             android:id="@+id/signup_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:outlineAmbientShadowColor="@color/colorPrimaryLight"
@@ -62,7 +59,6 @@
             android:id="@+id/signup_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:outlineAmbientShadowColor="@color/colorPrimaryLight"
@@ -70,9 +66,23 @@
             android:textColorHint="@color/colorTextSecondary"
             android:backgroundTint="@color/colorPrimaryLight"
             android:maxLines="1"
-            android:layout_marginBottom="25dp"
             android:autofillHints="@string/password" />
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center_vertical">
+            <CheckBox
+                android:id="@+id/signin_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/signin_consent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/login_consent"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_signup"
@@ -80,7 +90,7 @@
             android:layout_height="wrap_content"
             android:text="@string/create_account"
             android:textColor="@color/colorPrimary"
-            android:background="@color/colorPrimaryLight"
+            android:background="@color/colorTextSecondary"
             android:textSize="16sp" />
 
 

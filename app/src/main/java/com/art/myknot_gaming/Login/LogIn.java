@@ -6,17 +6,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.art.myknot_gaming.Admin.AdminAddMatch;
+import com.art.myknot_gaming.Admin.AdminLogin;
+import com.art.myknot_gaming.Admin.IntroAdmin;
 import com.art.myknot_gaming.HomeActivity;
 import com.art.myknot_gaming.Main2Activity;
 import com.art.myknot_gaming.R;
@@ -41,9 +50,9 @@ public class LogIn extends AppCompatActivity {
     Button btn_login;
     Button btn_create_account;
     ProgressBar login_progressBar;
-    TextView host_link;
+    TextView host_link,login_consent;
     SharedPreferences sp;
-
+    CheckBox login_check;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser currentUser;
@@ -58,8 +67,10 @@ public class LogIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         firebaseAuth = FirebaseAuth.getInstance();
-        sp = getSharedPreferences("login", MODE_PRIVATE);
 
+
+        login_check = findViewById(R.id.login_check);
+        login_consent= findViewById(R.id.login_consent);
         login_email = findViewById(R.id.login_email);
         login_password = findViewById(R.id.login_password);
         btn_login = findViewById(R.id.btn_login);
@@ -68,10 +79,48 @@ public class LogIn extends AppCompatActivity {
 
         btn_create_account = findViewById(R.id.btn_create_account);
 
+
+        //set textview to open website
+        btn_login.setEnabled(false);
+        String text = "I agree with the Privacy Policy and Terms of Service of MyKnot Gaming Services";
+        SpannableString ss = new SpannableString(text);
+        ClickableSpan clickableSpan1 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://myknot-pubggaming.online/public/privacy.html")));
+            }
+        };
+        ClickableSpan clickableSpan2 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://myknot-pubggaming.online/public/terms.html")));
+            }
+        };
+        ss.setSpan(clickableSpan1,17,31, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(clickableSpan2,36,52,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        login_consent.setText(ss);
+        login_consent.setMovementMethod(LinkMovementMethod.getInstance());
+
+        sp = getSharedPreferences("login", MODE_PRIVATE);
         //check if previously logged
         if (sp.getBoolean("logged", false)) {
             skipLogin();
         }
+
+        //enable login when checkBox is clicked
+        login_check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()){
+                    btn_login.setEnabled(true);
+                    btn_login.setBackgroundColor(getColor(R.color.colorPrimaryLight));
+                }else{
+                    btn_login.setEnabled(false);
+                    btn_login.setBackgroundColor(getColor(R.color.colorTextSecondary));
+                    Toast.makeText(LogIn.this, "Please agree with our Privacy Policy & Terms of Service to continue", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         btn_create_account.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,10 +132,21 @@ public class LogIn extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String email = login_email.getText().toString().trim();
+                String pwd = login_password.getText().toString().trim();
 
-                loginEmailPasswordUser(login_email.getText().toString().trim(),
-                        login_password.getText().toString().trim());
-
+//                if (TextUtils.isEmpty(email)) {
+//                    Toast.makeText(LogIn.this, "Invalid email", Toast.LENGTH_SHORT).show();
+//                }
+//                if (TextUtils.isEmpty(pwd)) {
+//                    Toast.makeText(LogIn.this, "Invalid password", Toast.LENGTH_SHORT).show();
+//                }
+                if (TextUtils.isEmpty(email)||(TextUtils.isEmpty(pwd))){
+                    Toast.makeText(LogIn.this, "Please enter Email & Password", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    loginEmailPasswordUser(email, pwd);
+                }
                 //hide keyboard
 //                InputMethodManager inputManager = (InputMethodManager)
 //                        getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -95,8 +155,6 @@ public class LogIn extends AppCompatActivity {
 //                inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getCurrentFocus()).getWindowToken(),
 //                        InputMethodManager.HIDE_NOT_ALWAYS);
 
-                //skip login condition
-                sp.edit().putBoolean("logged", true).apply();
             }
         });
 
@@ -105,7 +163,7 @@ public class LogIn extends AppCompatActivity {
         host_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LogIn.this, AdminAddMatch.class));
+                startActivity(new Intent(LogIn.this, AdminLogin.class));
             }
         });
 
@@ -121,13 +179,6 @@ public class LogIn extends AppCompatActivity {
     private void loginEmailPasswordUser(String email, String pwd) {
 
         login_progressBar.setVisibility(View.VISIBLE);
-
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(LogIn.this, "Invalid email", Toast.LENGTH_SHORT).show();
-        }
-        if (TextUtils.isEmpty(pwd)) {
-            Toast.makeText(LogIn.this, "Invalid password", Toast.LENGTH_SHORT).show();
-        }
 
 //        if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pwd)){
         {
@@ -175,6 +226,8 @@ public class LogIn extends AppCompatActivity {
                     }).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
+                    //skip login condition
+                    sp.edit().putBoolean("logged", true).apply();
                     //next activity
                     startActivity(new Intent(LogIn.this, HomeActivity.class));
                     finish();
