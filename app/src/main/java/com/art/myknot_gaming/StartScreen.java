@@ -43,12 +43,7 @@ public class StartScreen extends AppCompatActivity {
             }, 2000);
 
             //one-signal notification handler
-        OneSignal.startInit(this)
-                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
-//                .unsubscribeWhenNotificationsAreDisabled(true)
-                .setNotificationOpenedHandler(new Demo(this))
-                .autoPromptLocation(true)
-                .init();
+
 
     }
 }

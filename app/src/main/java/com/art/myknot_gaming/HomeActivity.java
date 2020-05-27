@@ -18,8 +18,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.art.myknot_gaming.DashBoard.DashBoard;
+import com.art.myknot_gaming.Notifications.Demo;
 import com.art.myknot_gaming.Notifications.Notifications;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.onesignal.OneSignal;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
@@ -69,6 +71,13 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
                 return false;
             }
         });
+
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+//                .unsubscribeWhenNotificationsAreDisabled(true)
+                .setNotificationOpenedHandler(new Demo(this))
+                .autoPromptLocation(true)
+                .init();
 
         btn_discord.setOnClickListener(new View.OnClickListener() {
             @Override

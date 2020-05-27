@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,29 +22,40 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.art.myknot_gaming.Util.MapList;
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.art.myknot_gaming.R;
+import com.art.myknot_gaming.Util.MapList;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.onesignal.OSPermissionSubscriptionState;
 import com.onesignal.OneSignal;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import io.grpc.okhttp.internal.framed.Header;
 
 public class AdminAddMatchDetail extends AppCompatActivity {
 
@@ -57,7 +67,7 @@ public class AdminAddMatchDetail extends AppCompatActivity {
     private AlertDialog.Builder dialogBuilder;
     private EditText roomId, roomPwd;
 
-    private String id = "",not_title="";
+    private String id = "",not_title="",msg,userId;
     private TextView entryFee, time, date, mode, map, title, prizeMoney, type, moneyBreakUp;
     private EditText et_title, et_date, et_time, et_prizeMoney, et_entryFee, et_moneyBreakUp;
     private Button btn_edit, btn_delete, btn_send, btn_time, btn_date;
@@ -75,7 +85,6 @@ public class AdminAddMatchDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_add_match_detail);
-
         title = findViewById(R.id.dtv_admin_match_title);
         map = findViewById(R.id.dtv_admin_edit_map);
         mode = findViewById(R.id.dtv_admin_edit_mode);
@@ -121,10 +130,26 @@ public class AdminAddMatchDetail extends AppCompatActivity {
             }
         });
 
+//        HttpHeaders createHeaders(String username, String password){
+//            return new HttpHeaders() {{
+//                String auth = username + ":" + password;
+//                byte[] encodedAuth = Base64.encodeBase64(
+//                        auth.getBytes(Charset.forName("US-ASCII")) );
+//                String authHeader = "Basic " + new String( encodedAuth );
+//                set( "Authorization", authHeader );
+//            }};
+//        }
+
+
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                msg  = "Room ID: " + roomId.getText().toString().trim() + "\n"
+                        + "Password: " + roomPwd.getText().toString().trim();
                 //send notification
+
+                //-------using one-signal commands------
+
 //                OSPermissionSubscriptionState status = OneSignal.getPermissionSubscriptionState();
 //                String userId = status.getSubscriptionStatus().getUserId();
 //                boolean isSubscribed = status.getSubscriptionStatus().getSubscribed();
@@ -134,53 +159,93 @@ public class AdminAddMatchDetail extends AppCompatActivity {
 
 //                if (!isSubscribed)
 //                    return;
-                OneSignal.idsAvailable(new OneSignal.IdsAvailableHandler() {
+                //----------
+//                OneSignal.idsAvailable(new OneSignal.IdsAvailableHandler() {
+//                    @Override
+//                    public void idsAvailable(final String userId, String registrationId) {
+//                        Log.d(TAG, "UserId:" + userId);
+//                        if (registrationId != null) {
+
+//                            Log.d(TAG, "registrationId:" + registrationId + "\n"+not_title);
+//                            OneSignal.getTags(new OneSignal.GetTagsHandler() {
+//                                @Override
+//                                public void tagsAvailable(JSONObject tags) {
+////                                    tags can be null
+//                                    if (tags != null) {
+//                                        String tagId = tags.toString();
+//                                        Log.d(TAG, "tagID:" + tagId);
+//                                        try {
+//
+//                                                JSONObject jsonMsg = new JSONObject("{'app_id':'34475058-e7e6-49b9-9158-af6a2885a79a','headings': {'en': '"+not_title+"'}, 'contents': {'en': '"+ msg +"'} ,'include_player_ids': ['"+userId+"']}");
+//
+////                                            JSONObject jsonMsg = new JSONObject("{'authorization': 'Basic M2U3YTQ2ZDctOGIxMS00ZDMzLTg5ZDgtODQzZWEzODA3MGY1','app_id':'34475058-e7e6-49b9-9158-af6a2885a79a','headings': {'en': '"+not_title+"'}, 'contents': {'en': '"+ msg +"'},'included_segments': ['poi'] ,'include_player_ids': ['60246441-2fe5-46b8-91d0-35818c77a810','83c7ed3c-875d-464f-a44b-4ef8b11d8d58']}");
+//
+//                                                Log.d(TAG,"msg: "+jsonMsg);
+//                                                OneSignal.postNotification(jsonMsg,
+//                                                        new OneSignal.PostNotificationResponseHandler(){
+//                                                            @Override
+//                                                            public void onSuccess(JSONObject response) {
+//                                                                Log.i(TAG, "postNotification Success: " + response.toString());
+//                                                            }
+//                                                            @Override
+//                                                            public void onFailure(JSONObject response) {
+//                                                                Log.e(TAG, "postNotification Failure: " + response.toString());
+//                                                            }
+//                                                        });
+//                                        } catch (Exception e) {
+//                                            e.printStackTrace();
+//                                        }
+//                                    }
+//                                }
+//                            });
+//                        }
+//                    }
+//                });
+                //------using volley json request-----
+                String url = "https://onesignal.com/api/v1/notifications";
+
+                JSONObject jsonBody;
+                try {
+                    jsonBody = new JSONObject(
+                            "{'app_id':'34475058-e7e6-49b9-9158-af6a2885a79a'," +
+                            "'headings': {'en': '"+not_title+"'}, " +
+                            "'contents': {'en': '"+ msg +"'}," +
+                                    "'filters':[{'field':'tag','key':'"+id+"','relation':'=','value':'true'}]}"
+                    );
+
+                //request a json object response
+                JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
                     @Override
-                    public void idsAvailable(final String userId, String registrationId) {
-                        Log.d(TAG, "UserId:" + userId);
-                        String[] id = new String[2];
-                        id[0]= userId;
-                        id[1]= "83c7ed3c-875d-464f-a44b-4ef8b11d8d58";
-                        if (registrationId != null) {
-                            final String msg  = "Room ID: " + roomId.getText().toString().trim() + "\n"
-                                    + "Password: " + roomPwd.getText().toString().trim();
-                            Log.d(TAG, "registrationId:" + registrationId + "\n"+not_title);
-                            OneSignal.getTags(new OneSignal.GetTagsHandler() {
-                                @Override
-                                public void tagsAvailable(JSONObject tags) {
-                                    //tags can be null
-                                    if (tags != null) {
-                                        String tagId = tags.toString();
-                                        Log.d(TAG, "tagID:" + tagId);
-                                        try {
-                                            String eID="83c7ed3c-875d-464f-a44b-4ef8b11d8d58";
-                                            OneSignal.postNotification(new JSONObject("{'headings': {'en': '"+not_title+"'}, 'contents': {'en': '"+ msg +"'}, 'include_player_ids': ['" + userId + "']}"),
-                                                    new OneSignal.PostNotificationResponseHandler() {
-                                                        @Override
-                                                        public void onSuccess(JSONObject response) {
-                                                            Log.i(TAG, "postNotification Success: " + response.toString());
-                                                        }
-                                                        @Override
-                                                        public void onFailure(JSONObject response) {
-                                                            Log.e(TAG, "postNotification Failure: " + response.toString());
-                                                        }
-                                                    });
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }
-                            });
-                        }
+                    public void onResponse(JSONObject response) {
+                        //now handle the response
+                        //Toast.makeText(AdminAddMatchDetail.this,  response, Toast.LENGTH_SHORT).show();
                     }
-                });
-            }
-
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //handle the error
+                        Toast.makeText(AdminAddMatchDetail.this, "An error occurred", Toast.LENGTH_SHORT).show();
+                        error.printStackTrace();
+                    }
+                })
+                {    //this is the part, that adds the header to the request
+                    @Override
+                    public Map<String, String> getHeaders() {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("Authorization", "Basic M2U3YTQ2ZDctOGIxMS00ZDMzLTg5ZDgtODQzZWEzODA3MGY1");
+                        params.put("Content-type", "application/json");
+                        return params;
+                    }
+                };
+                // Add the request to the queue
+                Volley.newRequestQueue(AdminAddMatchDetail.this).add(jsonRequest);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                //------------
+            }//btn-click-end
         });
-
-
     }
-
 
     private void deletePopup() {
         dialogBuilder = new AlertDialog.Builder(this);
@@ -378,6 +443,8 @@ public class AdminAddMatchDetail extends AppCompatActivity {
                     }
                 });
     }
+
+
 
 //    public void runtimeEnableAutoInit() {
 //        // [START fcm_runtime_enable_auto_init]

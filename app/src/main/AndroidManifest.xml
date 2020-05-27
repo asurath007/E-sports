@@ -23,7 +23,7 @@
             android:value="DISABLE" />
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_sveeJOH5WzkLWY" /> <!-- actvities -->
+            android:value="rzp_test_08IzQ2O7TwoJ2W" /> <!-- actvities -->
         <activity android:name=".Notifications.Notifications"
             android:label="Notifications"/>
         <activity
@@ -56,10 +56,7 @@
             android:name=".Registration.DuoMapSelector"
             android:label="Duo"
             android:parentActivityName=".Main2Activity" />
-        <activity
-            android:name=".Admin.AdminAddMatch"
-            android:label="Admin Panel"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".Payment.RazorPay_Activity" />
         <activity
             android:name=".AfterPayment.AfterPayment"
@@ -67,7 +64,6 @@
         <activity
             android:name=".AfterPayment.AfterPaymentDetail"
             android:parentActivityName=".AfterPayment.AfterPayment" />
-        <activity android:name=".Admin.AdminAddMatchDetail" android:label="Match Details" android:parentActivityName=".Admin.AdminAddMatch"/>
         <activity
             android:name=".Main2Activity"
             android:parentActivityName=".HomeActivity" android:label="Game Modes"/>
@@ -78,8 +74,14 @@
         <activity
             android:name=".Login.LogIn"
             android:label="MyKnot Gaming - Login" />
+
+        <activity android:name=".Admin.AdminAddMatchDetail" android:label="Match Details" android:parentActivityName=".Admin.AdminAddMatch"/>
+            <activity
+                android:name=".Admin.AdminAddMatch"
+                android:label="Admin Panel"
+                android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".StartScreen">
-            <intent-filter>
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

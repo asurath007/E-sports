@@ -53,8 +53,9 @@
         android:layout_above="@+id/not_nav_bar"
         android:layout_below="@+id/not_ll"
         android:layout_marginTop="10dp"
+        android:visibility="gone"
         android:layout_alignParentBottom="@id/not_nav_bar"
-        android:visibility="gone"/>
+        />
     <TextView
         android:id="@+id/not_display"
         android:layout_width="match_parent"
@@ -63,6 +64,7 @@
         android:layout_above="@+id/not_nav_bar"
         android:layout_below="@+id/not_ll"
         android:layout_alignParentBottom="@id/not_nav_bar"
+
         android:text="@string/no_new_notifications"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

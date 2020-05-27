@@ -32,8 +32,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.onesignal.OneSignal;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -267,6 +270,15 @@ public class Duo extends AppCompatActivity implements AdapterView.OnItemSelected
                 Toast.makeText(Duo.this, "Updating Payment Status failed\nPlease check after sometime", Toast.LENGTH_LONG).show();
             }
         });
+        //subscribe to message channel
+        JSONObject tags = new JSONObject();
+        try {
+            tags.put(uID,true);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        OneSignal.sendTags(tags);
+
     }
 
     @Override

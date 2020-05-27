@@ -26,6 +26,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.art.myknot_gaming.Notifications.Demo;
 import com.art.myknot_gaming.Util.MapList;
 import com.art.myknot_gaming.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,6 +43,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.onesignal.OneSignal;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -97,6 +99,8 @@ public class AdminAddMatch extends AppCompatActivity {
 
         // get items from db
         loadMatchFromDB();
+        //start notification services
+        startOneSignal();
 
         firestoreListener = matchRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
@@ -121,6 +125,15 @@ public class AdminAddMatch extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    private void startOneSignal() {
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+//                .unsubscribeWhenNotificationsAreDisabled(true)
+                .setNotificationOpenedHandler(new Demo(this))
+                .autoPromptLocation(true)
+                .init();
     }
 
 

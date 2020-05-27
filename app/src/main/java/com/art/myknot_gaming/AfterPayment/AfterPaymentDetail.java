@@ -1,11 +1,15 @@
 package com.art.myknot_gaming.AfterPayment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.art.myknot_gaming.R;
+
+import java.util.Arrays;
 
 public class AfterPaymentDetail extends AppCompatActivity {
     private TextView name,map,mode,date,time,type,id,pass;

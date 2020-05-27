@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.sip.SipSession;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,16 +33,18 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Notifications extends AppCompatActivity {
     private static final String TAG = "NotActivity";
-    private String title,body;
+    private String title="",body="";
     private TextView not_display;
     private BottomNavigationView nav_bar;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<NotificationList> not_list;
+    private SharedPreferences sp,sp1;
     private ListenerRegistration firestoreListener;
     private FirebaseFirestore firestoreDB = FirebaseFirestore.getInstance();
     private CollectionReference notificationRef = firestoreDB.collection("Users");
@@ -56,15 +59,15 @@ public class Notifications extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.navigation_home:
-                        startActivity(new Intent(Notifications.this, HomeActivity.class));finish();
+                        startActivity(new Intent(Notifications.this, HomeActivity.class));
                     case R.id.navigation_dashboard:
-                        startActivity(new Intent(Notifications.this, DashBoard.class));finish();
+                        startActivity(new Intent(Notifications.this, DashBoard.class));
                         break;
                     case R.id.navigation_notifications:
 //                        Toast.makeText(Notifications.this,"Notifications Page", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.navigation_profile:
-                        startActivity(new Intent(Notifications.this, Profile.class));finish();
+                        startActivity(new Intent(Notifications.this, Profile.class));
                         break;
                 }
                 return false;
@@ -92,15 +95,17 @@ public class Notifications extends AppCompatActivity {
 //            }
 //        });
 
-        SharedPreferences sp = getSharedPreferences("pushTitle",MODE_PRIVATE);
-        SharedPreferences sp1 = getSharedPreferences("pushBody",MODE_PRIVATE);
+         sp = getSharedPreferences("pushTitle",MODE_PRIVATE);
+         sp1 = getSharedPreferences("pushBody",MODE_PRIVATE);
         title =sp.getString("title","");
         body = sp1.getString("body","");
-        Log.d(TAG, "MSG:"+title+ "-+-" + body);
+        Log.d(TAG, "title: "+title+ "" +
+                "\nbody: " + body);
 
-        if ((title !=null)&&(body!=null)){
+
+        if (((title !="")&&(body!=""))){
             recyclerView.setVisibility(View.VISIBLE);
-            not_display.setVisibility(View.GONE);
+            not_display.setText("Notification will be deleted automatically with-in 2 minutes of opening or \n on closing the app");
         }
 
 
@@ -115,17 +120,30 @@ public class Notifications extends AppCompatActivity {
         NotificationList item1 = new NotificationList(title,body);
 
         not_list.add(item1);
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                recyclerView.setVisibility(View.GONE);
+                not_display.setText(R.string.no_new_notifications);
+                sp.edit().clear().apply();
+                sp1.edit().clear().apply();
+            }
+        },120000);//1000ms = 1s
         adapter = new NotificationAdapter(this, not_list);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
 
     }
+    protected void onStop(){
+        super.onStop();
+        sp.edit().clear().apply();
+        sp1.edit().clear().apply();
+    }
 //    protected void onDestroy() {
 //        super.onDestroy();
 //
-//        firestoreListener.remove();
+////        firestoreListener.remove();
 //    }
 
 }
