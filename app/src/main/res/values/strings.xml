@@ -110,5 +110,6 @@
     <string name="msg_welcome">Welcome message</string>
     <string name="admin_id">Admin-Id</string>
     <string name="login_consent"> I agree with the <a href ="https://myknot-pubggaming.online/public/privacy.html"> Privacy Policy</a> and <a href="https://myknot-pubggaming.online/public/terms.html">Terms of Service</a> of MyKnot Gaming Services </string>
+    <string name="forgot_password">Forgot Password?</string>
 
 </resources>

@@ -72,7 +72,7 @@ public class AdminAddMatchDetail extends AppCompatActivity {
     private EditText et_title, et_date, et_time, et_prizeMoney, et_entryFee, et_moneyBreakUp;
     private Button btn_edit, btn_delete, btn_send, btn_time, btn_date;
     private AutoCompleteTextView et_map, et_mode, et_type;
-    private int mDate, mMonth, mYear, mHour, mMinute;
+    private int mDate, mMonth, mYear, mHour, mMinute,count;
 
 
     private FirebaseFirestore firestoreDB = FirebaseFirestore.getInstance();
@@ -144,6 +144,16 @@ public class AdminAddMatchDetail extends AppCompatActivity {
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                count=count+1;
+                if (count==3){
+                    Toast.makeText(AdminAddMatchDetail.this,"Notifications already sent 3 times", Toast.LENGTH_LONG).show();
+                }if (count>3){
+                    btn_send.setEnabled(false);
+                    Toast.makeText(AdminAddMatchDetail.this,"Notifications sending disabled", Toast.LENGTH_LONG).show();
+                    btn_send.setBackgroundColor(getColor(R.color.colorTextSecondary));
+                }
+                Log.d("count","count: "+count);
                 msg  = "Room ID: " + roomId.getText().toString().trim() + "\n"
                         + "Password: " + roomPwd.getText().toString().trim();
                 //send notification
@@ -218,7 +228,7 @@ public class AdminAddMatchDetail extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         //now handle the response
-                        //Toast.makeText(AdminAddMatchDetail.this,  response, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminAddMatchDetail.this,  "Notification successfully sent", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override

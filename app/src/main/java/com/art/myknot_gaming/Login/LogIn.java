@@ -50,7 +50,7 @@ public class LogIn extends AppCompatActivity {
     Button btn_login;
     Button btn_create_account;
     ProgressBar login_progressBar;
-    TextView host_link,login_consent;
+    TextView host_link,login_consent,reset_link;
     SharedPreferences sp;
     CheckBox login_check;
     private FirebaseAuth firebaseAuth;
@@ -68,7 +68,7 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
         firebaseAuth = FirebaseAuth.getInstance();
 
-
+        reset_link = findViewById(R.id.reset_link);
         login_check = findViewById(R.id.login_check);
         login_consent= findViewById(R.id.login_consent);
         login_email = findViewById(R.id.login_email);
@@ -78,7 +78,6 @@ public class LogIn extends AppCompatActivity {
         login_progressBar = findViewById(R.id.login_progressBar);
 
         btn_create_account = findViewById(R.id.btn_create_account);
-
 
         //set textview to open website
         btn_login.setEnabled(false);
@@ -166,7 +165,29 @@ public class LogIn extends AppCompatActivity {
                 startActivity(new Intent(LogIn.this, AdminLogin.class));
             }
         });
-
+        //reset-link
+        reset_link.setClickable(true);
+        reset_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = login_email.getText().toString().trim();
+                if (TextUtils.isEmpty(email)){
+                    Toast.makeText(LogIn.this, "Enter email to send reset password link", Toast.LENGTH_LONG).show();
+                }else{
+                firebaseAuth.sendPasswordResetEmail(email)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                Toast.makeText(LogIn.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                            }else{
+                                    Toast.makeText(LogIn.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                }
+            }
+        });
     }
 
     private void skipLogin() {
