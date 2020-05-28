@@ -23,7 +23,7 @@
             android:value="DISABLE" />
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_08IzQ2O7TwoJ2W" /> <!-- actvities -->
+            android:value="@string/razor_pay_test_api_key" /> <!-- actvities -->
         <activity android:name=".Notifications.Notifications"
             android:label="Notifications"/>
         <activity

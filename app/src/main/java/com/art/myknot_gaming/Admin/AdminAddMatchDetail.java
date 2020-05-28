@@ -213,11 +213,12 @@ public class AdminAddMatchDetail extends AppCompatActivity {
 //                });
                 //------using volley json request-----
                 String url = "https://onesignal.com/api/v1/notifications";
-
+                String app_id = getString(R.string.one_signal_app_id);
+                final String rest_api = getString(R.string.one_signal_rest_api_key);
                 JSONObject jsonBody;
                 try {
                     jsonBody = new JSONObject(
-                            "{'app_id':'34475058-e7e6-49b9-9158-af6a2885a79a'," +
+                            "{'app_id':'"+app_id+"'," +
                             "'headings': {'en': '"+not_title+"'}, " +
                             "'contents': {'en': '"+ msg +"'}," +
                                     "'filters':[{'field':'tag','key':'"+id+"','relation':'=','value':'true'}]}"
@@ -242,7 +243,7 @@ public class AdminAddMatchDetail extends AppCompatActivity {
                     @Override
                     public Map<String, String> getHeaders() {
                         Map<String, String> params = new HashMap<String, String>();
-                        params.put("Authorization", "Basic M2U3YTQ2ZDctOGIxMS00ZDMzLTg5ZDgtODQzZWEzODA3MGY1");
+                        params.put("Authorization", rest_api);
                         params.put("Content-type", "application/json");
                         return params;
                     }
