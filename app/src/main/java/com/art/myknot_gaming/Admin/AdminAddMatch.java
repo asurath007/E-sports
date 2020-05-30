@@ -100,7 +100,6 @@ public class AdminAddMatch extends AppCompatActivity {
         // get items from db
         loadMatchFromDB();
         //start notification services
-        startOneSignal();
 
         firestoreListener = matchRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
@@ -126,16 +125,6 @@ public class AdminAddMatch extends AppCompatActivity {
                 });
 
     }
-
-    private void startOneSignal() {
-        OneSignal.startInit(this)
-                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
-//                .unsubscribeWhenNotificationsAreDisabled(true)
-                .setNotificationOpenedHandler(new Demo(this))
-                .autoPromptLocation(true)
-                .init();
-    }
-
 
     @SuppressLint("SetTextI18n")
     private void popUp() {

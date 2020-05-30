@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -15,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Admin.AdminLogin" android:label="Admin Sign-in" android:parentActivityName=".Login.LogIn"/>
+        <activity android:name=".Admin.AdminLogin" android:label="Admin Sign-in"/>
         <activity android:name=".Admin.IntroAdmin" android:label="MyKnot Gaming Partnership" android:parentActivityName=".Admin.AdminLogin"/>
 
         <meta-data
@@ -67,20 +68,22 @@
         <activity
             android:name=".Main2Activity"
             android:parentActivityName=".HomeActivity" android:label="Game Modes"/>
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Login.SignUp"
-            android:label="MyKnot Gaming - Signup" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Login.LogIn"
-            android:label="MyKnot Gaming - Login" />
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".Admin.AdminAddMatchDetail" android:label="Match Details" android:parentActivityName=".Admin.AdminAddMatch"/>
             <activity
                 android:name=".Admin.AdminAddMatch"
                 android:label="Admin Panel"
                 android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".StartScreen">
+        <activity android:name=".StartScreen"
+            android:theme="@style/AppTheme.NoActionBar">
         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

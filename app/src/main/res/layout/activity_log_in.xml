@@ -7,11 +7,15 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="16dp"
-    tools:context=".Login.LogIn">
+    android:hapticFeedbackEnabled="true"
+    tools:context=".Login.LogIn"
+    android:background="@color/colorPrimary">
     <ImageView
         android:id="@+id/iv1"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/myknot_gaming_logo"
         />
     <LinearLayout
@@ -20,7 +24,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@id/iv1"
-        android:gravity="center"
+
         >
 
     <ProgressBar
@@ -28,6 +32,7 @@
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         />
 
         <AutoCompleteTextView
@@ -44,6 +49,10 @@
             android:textColorHint="@color/colorTextSecondary"
             android:textSize="20sp" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
         <EditText
             android:id="@+id/login_password"
             android:layout_width="match_parent"
@@ -52,11 +61,22 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:outlineAmbientShadowColor="@color/colorPrimaryLight"
+            android:maxLength="12"
             android:textColor="@color/colorTextPrimary"
             android:textColorHint="@color/colorTextSecondary"
             android:textSize="20sp"
             android:autofillHints="@string/password" />
+        <ImageView
+            android:id="@+id/login_pwd_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:onClick="showHidePass"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_lock_36"
+            />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,46 +102,40 @@
             android:textSize="16sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hapticFeedbackEnabled="true"
             android:clickable="false"/>
 
         <TextView
-            android:text="@string/or"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:gravity="center_horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorTextPrimary"
-            />
-
-        <Button
-            android:id="@+id/btn_create_account"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryLight"
-            android:text="@string/create_account"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp" />
-
-        <TextView
             android:id="@+id/reset_link"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryLight"
-            android:textAlignment="center"
-            android:text="@string/forgot_password"
+            android:text="@string/i_forgot_my_password"
+            android:textAllCaps="true"
             android:layout_marginTop="30dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
+            android:hapticFeedbackEnabled="true"
+            />
+
+        <TextView
+            android:id="@+id/create_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryLight"
+            android:text="@string/i_don_t_have_an_account"
+            android:textAllCaps="true"
+            android:layout_marginTop="15dp"
+            android:textSize="14sp"
             />
         <TextView
-        android:id="@+id/host_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryLight"
-        android:textAlignment="center"
-        android:text="@string/join_as_a_host"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp"
+            android:id="@+id/host_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryLight"
+            android:text="@string/i_want_to_join_as_a_host"
+            android:textAllCaps="true"
+            android:layout_marginTop="15dp"
+            android:textSize="14sp"
         />
 
 

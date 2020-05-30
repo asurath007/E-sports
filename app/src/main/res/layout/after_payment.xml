@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:padding="5dp"
     tools:context=".AfterPayment.AfterPayment"
+    android:background="@color/colorPrimary"
     >
 
     <ImageView

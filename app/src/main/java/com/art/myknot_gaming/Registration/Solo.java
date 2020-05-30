@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -55,7 +56,7 @@ public class Solo extends AppCompatActivity implements AdapterView.OnItemSelecte
     private ProgressBar progressBar,statusBar;
     private List<MapList> mapList;
     private SharedPreferences sp,sp1,sp2;
-
+    private Vibrator vibrator;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
@@ -71,7 +72,7 @@ public class Solo extends AppCompatActivity implements AdapterView.OnItemSelecte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solo);
-
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         firebaseAuth = FirebaseAuth.getInstance();
         sp = getSharedPreferences("matchID",MODE_PRIVATE);
         uID = sp.getString("value","");
@@ -124,7 +125,7 @@ public class Solo extends AppCompatActivity implements AdapterView.OnItemSelecte
             public void onClick(View v) {
 
                 if (!TextUtils.isEmpty(et_solo.getText().toString())) {
-
+                    vibrations(0);
                     progressBar.setVisibility(View.VISIBLE);
 
                     player1 = et_solo.getText().toString().trim();
@@ -157,6 +158,7 @@ public class Solo extends AppCompatActivity implements AdapterView.OnItemSelecte
                 } else {
                     Toast.makeText(Solo.this, "Empty fields not allowed",
                             Toast.LENGTH_LONG).show();
+                    vibrations(1);
                 }
             }
 
@@ -283,6 +285,17 @@ public class Solo extends AppCompatActivity implements AdapterView.OnItemSelecte
             Toast.makeText(this, "Payment error please try again", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.e("OnPaymentError", "Exception in onPaymentError", e);
+        }
+    } public void vibrations(int level){
+        switch (level){
+            case 0:
+                assert vibrator != null;
+                vibrator.vibrate(25);
+                break;
+            case 1:
+                assert vibrator != null;
+                vibrator.vibrate(50);
+                break;
         }
     }
 }

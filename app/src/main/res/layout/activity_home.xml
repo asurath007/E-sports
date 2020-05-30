@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".HomeActivity"
+    android:background="@color/colorPrimary">
     <ImageView
         android:id="@+id/iv_logo_home"
         android:layout_width="350dp"
@@ -40,8 +41,7 @@
     <GridLayout
         android:id="@+id/gl_home"
         android:layout_width="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
@@ -65,21 +65,42 @@
             android:layout_margin="5dp"
             android:padding="5dp"
             android:background = "@drawable/myknot_gaming_logo">
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/iv_pubg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/pubg"
+                    android:scaleType="fitXY"
+                    android:alpha="1.0"
+                    />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pubg"/>
-            <ImageView
-                android:id="@+id/iv_pubg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/img_pubg2"
-                android:alpha="0.8"
-                /></LinearLayout>
+                android:text="@string/pubg"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/colorTextPrimary"
+                android:alpha="1.0"
+                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="tap to view match list"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="5dp"
+                    android:textSize="10sp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorTextPrimary"
+
+                    android:layout_marginTop="2dp"
+                    tools:ignore="SmallSp" />
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
         <!--r1c2-->
@@ -93,20 +114,40 @@
             app:cardCornerRadius="5dp"
             app:cardElevation="5dp"
             android:layout_margin="5dp">
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/iv_cod"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/cod"
+                    android:scaleType="fitXY"
+                    />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cod"/>
-            <ImageView
-                android:id="@+id/iv_cod"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/img_cod"
-                android:alpha="0.8"/></LinearLayout>
+                android:text="@string/cod"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="tap to view match list"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginTop="2dp"
+                    android:textSize="10sp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorTextPrimary"
+
+                    tools:ignore="SmallSp" />
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
         <!--r2c1-->
@@ -196,35 +237,35 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="15dp"
-            android:background="@drawable/icons8_whatsapp_50_3" />
+            android:background="@drawable/whatsapp100" />
 
         <Button
             android:id="@+id/btn_home_instagram"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="15dp"
-            android:background="@drawable/icons8_instagram_50_3" />
+            android:background="@drawable/instagram100" />
 
         <Button
             android:id="@+id/btn_home_discord"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="15dp"
-            android:background="@drawable/icons8_discord_50" />
+            android:background="@drawable/discord100" />
 
         <Button
             android:id="@+id/btn_home_website"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="15dp"
-            android:background="@drawable/icons8_link_50" />
+            android:background="@drawable/link100" />
 
         <Button
             android:id="@+id/btn_home_donate"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="15dp"
-            android:background="@drawable/icons8_community_grants_50" />
+            android:background="@drawable/charity100"/>
     </TableRow>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

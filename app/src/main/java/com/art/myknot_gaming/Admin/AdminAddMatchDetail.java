@@ -221,7 +221,8 @@ public class AdminAddMatchDetail extends AppCompatActivity {
                             "{'app_id':'"+app_id+"'," +
                             "'headings': {'en': '"+not_title+"'}, " +
                             "'contents': {'en': '"+ msg +"'}," +
-                                    "'filters':[{'field':'tag','key':'"+id+"','relation':'=','value':'true'}]}"
+                                    "'filters':[{'field':'tag','key':'"+id+"','relation':'=','value':'true'}," +
+                                                "{'operator':'AND'}, {'field':'tag','key':'logged_in','relation':'=','value':'true'}]}"
                     );
 
                 //request a json object response

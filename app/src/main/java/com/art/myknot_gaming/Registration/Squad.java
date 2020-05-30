@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -59,7 +60,7 @@ public class Squad extends AppCompatActivity implements AdapterView.OnItemSelect
     String id="",paymentStatus="-",uID="";
     String sID = "", lID = "",playerID="";
     private SharedPreferences sp,sp1,sp2;
-
+    private Vibrator vibrator;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("Squad Registration");
@@ -88,7 +89,7 @@ public class Squad extends AppCompatActivity implements AdapterView.OnItemSelect
         moneyBreakUp = findViewById(R.id.tv_squad_moneyBreakUp);
         entryFee=findViewById(R.id.tv_squad_entryFee);
         statusBar=findViewById(R.id.match_status);
-
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         et_squad_name = findViewById(R.id.et_squad_name);
         et_squad_1 = findViewById(R.id.et_squad_1);
         et_squad_2 = findViewById(R.id.et_squad_2);
@@ -127,7 +128,7 @@ public class Squad extends AppCompatActivity implements AdapterView.OnItemSelect
                         && !TextUtils.isEmpty(et_squad_2.getText().toString())
                         && !TextUtils.isEmpty(et_squad_3.getText().toString())
                         && !TextUtils.isEmpty(et_squad_4.getText().toString())) {
-
+                vibrations(0);
                 progressBar.setVisibility(View.VISIBLE);
 
                 teamName = et_squad_name.getText().toString().trim();
@@ -167,6 +168,7 @@ public class Squad extends AppCompatActivity implements AdapterView.OnItemSelect
             }else {
                 Toast.makeText(Squad.this, "Empty fields not allowed",
                         Toast.LENGTH_LONG).show();
+                vibrations(1);
             }
         }
         });
@@ -299,6 +301,17 @@ public class Squad extends AppCompatActivity implements AdapterView.OnItemSelect
             Toast.makeText(this, "Payment error please try again", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.e("OnPaymentError", "Exception in onPaymentError", e);
+        }
+    } public void vibrations(int level){
+        switch (level){
+            case 0:
+                assert vibrator != null;
+                vibrator.vibrate(25);
+                break;
+            case 1:
+                assert vibrator != null;
+                vibrator.vibrate(50);
+                break;
         }
     }
 }

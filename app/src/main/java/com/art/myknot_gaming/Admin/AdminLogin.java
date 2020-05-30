@@ -8,10 +8,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +45,7 @@ public class AdminLogin extends AppCompatActivity {
     Button btn_login,btn_create;
     ProgressBar login_progressBar;
     SharedPreferences sp;
+    ImageView pwd_img;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -61,13 +65,14 @@ public class AdminLogin extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_admin_login);
         btn_create = findViewById(R.id.btn_create_admin_account);
         login_progressBar = findViewById(R.id.login_admin_progressBar);
+        pwd_img = findViewById(R.id.admin_pwd_img);
 
 
-        sp = getSharedPreferences("admin", MODE_PRIVATE);
+        //sp = getSharedPreferences("admin", MODE_PRIVATE);
         //check if previously logged
-        if (sp.getBoolean("adminLogged", false)) {
-            skipLogin();
-        }
+        //if (sp.getBoolean("adminLogged", false)) {
+           // skipLogin();
+        //}
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,9 +165,21 @@ public class AdminLogin extends AppCompatActivity {
                     });
         }
     }
-        private void skipLogin () {
-            Intent prevLogIn = new Intent(getApplicationContext(), AdminAddMatch.class);
-            startActivity(prevLogIn);
-            finish();
+
+    public void showHidePass(View view) {
+        if(view.getId()==R.id.admin_pwd_img){
+            if (login_password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                pwd_img.setImageResource(R.drawable.ic_baseline_lock_open_36);
+                login_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            }else{
+                pwd_img.setImageResource(R.drawable.ic_baseline_lock_36);
+                login_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
         }
+    }
+//        private void skipLogin () {
+//            Intent prevLogIn = new Intent(getApplicationContext(), AdminAddMatch.class);
+//            startActivity(prevLogIn);
+//            finish();
+//        }
 }

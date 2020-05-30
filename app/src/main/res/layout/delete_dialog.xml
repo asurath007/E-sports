@@ -13,45 +13,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:cardCornerRadius="15dp"
-        android:backgroundTint="@color/colorPrimary"
         >
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="25dp">
+            android:padding="25dp"
+            >
 
             <TextView
                 android:id="@+id/tv_alert"
-                android:layout_width="300dp"
-                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/are_you_sure"
                 android:textAlignment="center"
-                android:textColor="@color/colorBorder"
+                android:textColor="@color/colorPrimaryLight"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_alert2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This action can not be reverted"
+                android:textAlignment="center"
+                android:layout_below="@id/tv_alert"
+                android:textSize="14sp"/>
+
 
             <Button
                 android:id="@+id/btn_no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_alert"
-                android:layout_alignStart="@+id/tv_alert"
-                android:layout_marginStart="0dp"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:layout_below="@+id/tv_alert2"
+                android:layout_alignEnd="@+id/tv_alert"
                 android:layout_marginTop="35dp"
-                android:background="@color/colorPrimaryLight"
+                android:layout_marginEnd="15dp"
+                android:background="@color/colorAccent"
                 android:text="@string/no"
                 android:textColor="@color/colorPrimary"/>
 
             <Button
                 android:id="@+id/btn_yes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_alert"
-                android:layout_alignEnd="@+id/tv_alert"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:layout_below="@+id/tv_alert2"
+                android:layout_alignStart="@+id/tv_alert"
                 android:layout_marginTop="35dp"
-                android:layout_marginEnd="0dp"
-                android:background="@color/colorPrimaryLight"
+                android:layout_marginStart="15dp"
+                android:background="@color/colorAccent"
                 android:text="@string/yes"
                 android:textColor="@color/colorPrimary"/>
 

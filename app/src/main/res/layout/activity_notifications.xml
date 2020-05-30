@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Notifications.Notifications"
-    android:layout_margin="5dp"
+
+    android:background="@color/colorPrimary"
     >
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="75dp"
         android:layout_marginTop="5dp"
         android:src="@drawable/myknot_gaming_logo"
         app:layout_constraintEnd_toEndOf="parent"

@@ -8,26 +8,28 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.LinkMovementMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.art.myknot_gaming.Admin.AdminAddMatch;
 import com.art.myknot_gaming.Admin.AdminLogin;
-import com.art.myknot_gaming.Admin.IntroAdmin;
 import com.art.myknot_gaming.HomeActivity;
-import com.art.myknot_gaming.Main2Activity;
 import com.art.myknot_gaming.R;
 import com.art.myknot_gaming.Util.UserDetail;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,16 +45,21 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.onesignal.OneSignal;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LogIn extends AppCompatActivity {
     EditText login_email;
     EditText login_password;
     Button btn_login;
-    Button btn_create_account;
     ProgressBar login_progressBar;
-    TextView host_link,login_consent,reset_link;
+    TextView host_link,create_account,login_consent,reset_link;
     SharedPreferences sp;
     CheckBox login_check;
+    ImageView pwd_img;
+    Vibrator vibrator;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser currentUser;
@@ -67,7 +74,8 @@ public class LogIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         firebaseAuth = FirebaseAuth.getInstance();
-
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        pwd_img = findViewById(R.id.login_pwd_img);
         reset_link = findViewById(R.id.reset_link);
         login_check = findViewById(R.id.login_check);
         login_consent= findViewById(R.id.login_consent);
@@ -77,8 +85,7 @@ public class LogIn extends AppCompatActivity {
         host_link = findViewById(R.id.host_link);
         login_progressBar = findViewById(R.id.login_progressBar);
 
-        btn_create_account = findViewById(R.id.btn_create_account);
-
+        create_account = findViewById(R.id.create_account);
         //set textview to open website
         btn_login.setEnabled(false);
         String text = "I agree with the Privacy Policy and Terms of Service of MyKnot Gaming Services";
@@ -100,8 +107,9 @@ public class LogIn extends AppCompatActivity {
         login_consent.setText(ss);
         login_consent.setMovementMethod(LinkMovementMethod.getInstance());
 
-        sp = getSharedPreferences("login", MODE_PRIVATE);
+
         //check if previously logged
+        sp = getSharedPreferences("login", MODE_PRIVATE);
         if (sp.getBoolean("logged", false)) {
             skipLogin();
         }
@@ -121,18 +129,12 @@ public class LogIn extends AppCompatActivity {
             }
         });
 
-        btn_create_account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LogIn.this, SignUp.class));
-            }
-        });
-
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = login_email.getText().toString().trim();
                 String pwd = login_password.getText().toString().trim();
+                vibrations(1);
 
 //                if (TextUtils.isEmpty(email)) {
 //                    Toast.makeText(LogIn.this, "Invalid email", Toast.LENGTH_SHORT).show();
@@ -142,6 +144,7 @@ public class LogIn extends AppCompatActivity {
 //                }
                 if (TextUtils.isEmpty(email)||(TextUtils.isEmpty(pwd))){
                     Toast.makeText(LogIn.this, "Please enter Email & Password", Toast.LENGTH_LONG).show();
+                    vibrations(2);
                 }
                 else {
                     loginEmailPasswordUser(email, pwd);
@@ -157,12 +160,24 @@ public class LogIn extends AppCompatActivity {
             }
         });
 
+        //create-account
+        create_account.setClickable(true);
+        create_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vibrations(0);
+                startActivity(new Intent(LogIn.this, SignUp.class));
+            }
+        });
+
         //host page linking
         host_link.setClickable(true);
         host_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrations(0);
                 startActivity(new Intent(LogIn.this, AdminLogin.class));
+                finish();
             }
         });
         //reset-link
@@ -170,6 +185,7 @@ public class LogIn extends AppCompatActivity {
         reset_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrations(0);
                 String email = login_email.getText().toString().trim();
                 if (TextUtils.isEmpty(email)){
                     Toast.makeText(LogIn.this, "Enter email to send reset password link", Toast.LENGTH_LONG).show();
@@ -191,7 +207,6 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void skipLogin() {
-//        Intent prevLogIn = new Intent(getApplicationContext(), HomeActivity.class);
         Intent prevLogIn = new Intent(getApplicationContext(), HomeActivity.class);
         startActivity(prevLogIn);
         finish();
@@ -249,6 +264,14 @@ public class LogIn extends AppCompatActivity {
                 public void onSuccess(AuthResult authResult) {
                     //skip login condition
                     sp.edit().putBoolean("logged", true).apply();
+                    //add notification tag
+                    JSONObject tags = new JSONObject();
+                    try {
+                        tags.put("logged_in",true);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    OneSignal.sendTags(tags);
                     //next activity
                     startActivity(new Intent(LogIn.this, HomeActivity.class));
                     finish();
@@ -271,4 +294,29 @@ public class LogIn extends AppCompatActivity {
         }
 
     }
+
+    public void showHidePass(View view) {
+        if(view.getId()==R.id.login_pwd_img){
+            if (login_password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                pwd_img.setImageResource(R.drawable.ic_baseline_lock_open_36);
+                login_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            }else{
+                pwd_img.setImageResource(R.drawable.ic_baseline_lock_36);
+                login_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
+        }
+    }
+    public void vibrations(int level){
+        switch (level){
+            case 0:
+                assert vibrator != null;
+                vibrator.vibrate(25);
+                break;
+            case 1:
+                assert vibrator != null;
+                vibrator.vibrate(50);
+                break;
+        }
+    }
+
 }

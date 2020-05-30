@@ -8,6 +8,7 @@
     android:layout_gravity="center_horizontal"
     tools:context=".Profile"
     app:cardElevation="3dp"
+    android:background="@color/colorPrimary"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,11 +41,11 @@
 
         <Button
             android:id="@+id/btn_prof_edit"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignBottom="@+id/iv_prof"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/ic_edit_black_36dp" /></RelativeLayout>
+            android:background="@drawable/ic_edit_white_36dp" /></RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -362,24 +363,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
 
-        <Button
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_prof_logout"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:background="@color/colorPrimaryLight"
-            android:text="Logout"
+            android:src="@drawable/ic_exit_to_app_black_24dp"
+            android:rotation="180"
             android:textColor="@color/colorPrimary"
             />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_prof_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:visibility="gone"
-            android:clickable="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="15dp"
             android:src="@drawable/ic_save_black_24dp"
             />
 

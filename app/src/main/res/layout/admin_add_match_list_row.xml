@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:textAlignment="center"
-    android:padding="2dp">
+    android:padding="2dp"
+    android:background="@color/colorPrimary">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"

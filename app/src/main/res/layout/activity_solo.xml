@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:padding="5dp"
-    tools:context=".Registration.Solo">
+    tools:context=".Registration.Solo"
+    android:background="@color/colorPrimary">
     <TextView
         android:id="@+id/tv_solo"
         android:layout_width="match_parent"

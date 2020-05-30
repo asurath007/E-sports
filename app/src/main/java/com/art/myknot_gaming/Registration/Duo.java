@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -57,7 +58,7 @@ public class Duo extends AppCompatActivity implements AdapterView.OnItemSelected
     String sID = "", lID = "",playerID="";
     String teamName,player1,player2,slot;
     private SharedPreferences sp,sp1,sp2;
-
+    private Vibrator vibrator;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -69,7 +70,7 @@ public class Duo extends AppCompatActivity implements AdapterView.OnItemSelected
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_duo);
-
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         firebaseAuth = FirebaseAuth.getInstance();
         sp = getSharedPreferences("matchID",MODE_PRIVATE);
         uID = sp.getString("value","");
@@ -123,7 +124,7 @@ public class Duo extends AppCompatActivity implements AdapterView.OnItemSelected
                 if (!TextUtils.isEmpty(et_duo_name.getText().toString())
                     && !TextUtils.isEmpty(et_duo_1.getText().toString())
                     && !TextUtils.isEmpty(et_duo_2.getText().toString())) {
-
+                    vibrations(0);
                 progressBar.setVisibility(View.VISIBLE);
 
                 teamName = et_duo_name.getText().toString().trim();
@@ -160,6 +161,7 @@ public class Duo extends AppCompatActivity implements AdapterView.OnItemSelected
             } else {
                 Toast.makeText(Duo.this, "Empty fields not allowed",
                         Toast.LENGTH_LONG).show();
+                    vibrations(1);
             }
         }
         });
@@ -287,6 +289,17 @@ public class Duo extends AppCompatActivity implements AdapterView.OnItemSelected
             Toast.makeText(this, "Payment error please try again", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.e("OnPaymentError", "Exception in onPaymentError", e);
+        }
+    } public void vibrations(int level){
+        switch (level){
+            case 0:
+                assert vibrator != null;
+                vibrator.vibrate(25);
+                break;
+            case 1:
+                assert vibrator != null;
+                vibrator.vibrate(50);
+                break;
         }
     }
 }

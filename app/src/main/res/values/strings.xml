@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">MyKnot Gaming</string>
     <string name="login">Login</string>
-    <string name="e_mail">E-mail</string>
     <string name="tv_login_link_to_signup">Not a member?\n Create an account</string>
     <string name="username">Username</string>
     <string name="create_account">Create Account</string>
@@ -15,7 +14,6 @@
     <string name="confirm_pay">Proceed to Payment</string>
     <string name="leader_in_game_name">Leader In-game Name</string>
     <string name="_2_in_game_name">#2 In-game Name</string>
-    <string name="name">Name</string>
     <string name="_4_in_game_name">#4 In-game Name</string>
     <string name="_3in_game_name">#3 In-game Name</string>
     <string name="team_name">Team Name</string>
@@ -38,7 +36,7 @@
     <string name="googlepay_status_checking" translatable="false">Checking if Google Pay is available...</string>
     <string name="payments_show_name" translatable="false">Successfully received payment data for %s!</string>
     <string name="select_a_slot">Select a slot:</string>
-    <string name="join_as_a_host">Join as a Host</string>
+
     <string name="company_logo">Company Logo</string>
     <string name="title_activity_admin_add_match">AdminAddMatch</string>
     <!-- Strings used for fragments for navigation -->
@@ -75,7 +73,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="home_fragment_text"><![CDATA[MyKnot Gaming brings you the most awaited custom gaming experience with 100% true Battle Royale Matches.\nJoin us right now and drop into a match to test your skills & earn rewards.]]></string>
-    <string name="tv_home_sharing">Join us on other platforms and stay connected</string>
+    <string name="tv_home_sharing">Join us on other platforms and stay updated</string>
     <string name="organiser_logo">Organiser Logo</string>
     <string name="pubg">PUBG</string>
     <string name="cod">COD</string>
@@ -110,6 +108,20 @@
     <string name="msg_welcome">Welcome message</string>
     <string name="admin_id">Admin-Id</string>
     <string name="login_consent"> I agree with the <a href ="https://myknot-pubggaming.online/public/privacy.html"> Privacy Policy</a> and <a href="https://myknot-pubggaming.online/public/terms.html">Terms of Service</a> of MyKnot Gaming Services </string>
-    <string name="forgot_password">Forgot Password?</string>
+    <string name="partner_with_us_and_host_your_own_custom_games_with_least_worries">Partner with us and host your own custom games with least worries</string>
+    <string name="yearly_pack_12_months">Yearly pack (12 months)</string>
+    <string name="submit_for_review">Submit for review</string>
+    <string name="weekly_pack_7_days">Weekly pack (7 days)</string>
+    <string name="monthly_pack_28_days">Monthly pack (28 days)</string>
+    <string name="choose_your_pack">Choose your pack</string>
+    <string name="reason_of_use">Reason of use</string>
+    <string name="mobile_no">Mobile No.</string>
+    <string name="e_mail">E-mail</string>
+    <string name="app_logo">App Logo</string>
+    <string name="half_yearly_pack_6_months">Half-yearly pack (6 months)</string>
+    <string name="name">Name</string>
+    <string name="i_want_to_join_as_a_host">- i want to host my own match</string>
+    <string name="i_don_t_have_an_account">- I don\'t have an Account</string>
+    <string name="i_forgot_my_password">- i forgot my password</string>
 
 </resources>

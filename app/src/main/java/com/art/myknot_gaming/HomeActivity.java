@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,13 +36,14 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
     private Button btn_discord,btn_whatsapp,btn_instagram,btn_website,btn_donate;
     private ImageView iv1,iv2;
     private Context mContext;
+    private Vibrator vibrator;
     private PackageManager packageManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         nav_bar = findViewById(R.id.home_nav_bar);
         btn_discord = findViewById(R.id.btn_home_discord);
         btn_whatsapp = findViewById(R.id.btn_home_whatsapp);
@@ -72,16 +74,10 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
             }
         });
 
-        OneSignal.startInit(this)
-                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
-//                .unsubscribeWhenNotificationsAreDisabled(true)
-                .setNotificationOpenedHandler(new Demo(this))
-                .autoPromptLocation(true)
-                .init();
-
         btn_discord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrations(0);
                 Intent intentDiscord = new Intent(Intent.ACTION_VIEW);
                 String url = "https://discord.gg/5VFDyHZ";
                 intentDiscord.setData(Uri.parse(url));
@@ -97,6 +93,7 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
         btn_whatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrations(0);
                 Intent intentWhatsapp = new Intent(Intent.ACTION_VIEW);
                 String url = "https://chat.whatsapp.com/Ga8LZnS6yHAJ0cO7KlZML0";
                 intentWhatsapp.setData(Uri.parse(url));
@@ -112,6 +109,7 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
         btn_instagram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrations(0);
                 Intent insta = new Intent(Intent.ACTION_VIEW);
                 String url = "https://instagram.com/myknot_gaming?igshid=wuf0ppebeze1";
                 insta.setData(Uri.parse(url));
@@ -128,6 +126,7 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
         btn_website.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrations(0);
                 Intent web = new Intent(Intent.ACTION_VIEW);
                 String url = "https://myknot-pubggaming.online/";
                 web.setData(Uri.parse(url));
@@ -143,6 +142,7 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
         btn_donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrations(0);
                 startPayment();
             }
         });
@@ -150,6 +150,7 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
         iv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrations(0);
                 Intent intent = new Intent(HomeActivity.this, Main2Activity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
@@ -158,6 +159,7 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
         iv2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrations(0);
                 Toast.makeText(HomeActivity.this,"No COD matches found", Toast.LENGTH_LONG).show();
             }
         });
@@ -212,6 +214,18 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
             Toast.makeText(HomeActivity.this, "Payment error please try again", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.e("OnPaymentError", "Exception in onPaymentError", e);
+        }
+    }
+    public void vibrations(int level){
+        switch (level){
+            case 0:
+                assert vibrator != null;
+                vibrator.vibrate(25);
+                break;
+            case 1:
+                assert vibrator != null;
+                vibrator.vibrate(50);
+                break;
         }
     }
 }

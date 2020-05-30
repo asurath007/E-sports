@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-    android:outlineSpotShadowColor="#FFFFFF"
     android:padding="16dp"
-    tools:context=".Main2Activity">
+    tools:context=".Main2Activity"
+    android:background="@color/colorPrimary">
 
 
     <Button

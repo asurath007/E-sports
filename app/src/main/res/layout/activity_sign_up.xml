@@ -7,12 +7,15 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".Login.SignUp">
+    tools:context=".Login.SignUp"
+    android:background="@color/colorPrimary">
 
     <ImageView
         android:id="@+id/iv1"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/myknot_gaming_logo"
         />
     <LinearLayout

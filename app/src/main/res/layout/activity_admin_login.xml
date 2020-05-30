@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
-    tools:context=".Admin.AdminLogin">
+    tools:context=".Admin.AdminLogin"
+    android:background="@color/colorPrimary">
 
     <ProgressBar
         android:id="@+id/login_admin_progressBar"
@@ -44,12 +45,15 @@
             android:textColorHint="@color/colorTextSecondary"
             android:textSize="20sp"
             tools:targetApi="p" />
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
         <EditText
             android:id="@+id/login_admin_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:backgroundTint="@color/colorPrimaryLight"
             android:hint="@string/password"
             android:inputType="textPassword"
@@ -60,8 +64,17 @@
             android:textSize="20sp"
             android:autofillHints="@string/password"
             tools:targetApi="p" />
-
-
+            <ImageView
+                android:id="@+id/admin_pwd_img"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:onClick="showHidePass"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_baseline_lock_36"
+                />
+        </RelativeLayout>
         <Button
             android:id="@+id/btn_admin_login"
             android:text="@string/login"
