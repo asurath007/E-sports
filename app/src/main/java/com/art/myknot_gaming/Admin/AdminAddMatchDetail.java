@@ -130,17 +130,6 @@ public class AdminAddMatchDetail extends AppCompatActivity {
             }
         });
 
-//        HttpHeaders createHeaders(String username, String password){
-//            return new HttpHeaders() {{
-//                String auth = username + ":" + password;
-//                byte[] encodedAuth = Base64.encodeBase64(
-//                        auth.getBytes(Charset.forName("US-ASCII")) );
-//                String authHeader = "Basic " + new String( encodedAuth );
-//                set( "Authorization", authHeader );
-//            }};
-//        }
-
-
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,6 +201,8 @@ public class AdminAddMatchDetail extends AppCompatActivity {
 //                    }
 //                });
                 //------using volley json request-----
+
+
                 String url = "https://onesignal.com/api/v1/notifications";
                 String app_id = getString(R.string.one_signal_app_id);
                 final String rest_api = getString(R.string.one_signal_rest_api_key);
@@ -222,7 +213,10 @@ public class AdminAddMatchDetail extends AppCompatActivity {
                             "'headings': {'en': '"+not_title+"'}, " +
                             "'contents': {'en': '"+ msg +"'}," +
                                     "'filters':[{'field':'tag','key':'"+id+"','relation':'=','value':'true'}," +
-                                                "{'operator':'AND'}, {'field':'tag','key':'logged_in','relation':'=','value':'true'}]}"
+                                                "{'operator':'AND'},{'field':'tag','key':'logged_in','relation':'=','value':'true'}," +
+                                                "{'operator':'AND'},{'field':'tag','key':'user_id','relation':'>',value':''}]}"
+
+
                     );
 
                 //request a json object response

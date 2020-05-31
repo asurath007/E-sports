@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.art.myknot_gaming.Admin.AdminLogin;
 import com.art.myknot_gaming.HomeActivity;
+import com.art.myknot_gaming.Intro.IntroActivity;
 import com.art.myknot_gaming.R;
 import com.art.myknot_gaming.Util.UserDetail;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,6 +61,7 @@ public class LogIn extends AppCompatActivity {
     CheckBox login_check;
     ImageView pwd_img;
     Vibrator vibrator;
+    String LID;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser currentUser;
@@ -248,6 +250,7 @@ public class LogIn extends AppCompatActivity {
                                                     ud.setId(snapshot.getId());
                                                     Log.d("KEY","LID:"+snapshot.getId());
                                                     //pass id to fetch prof info
+                                                    LID = snapshot.getId();
                                                     SharedPreferences sharedPref = getSharedPreferences("loginKey", MODE_PRIVATE);
                                                     SharedPreferences.Editor editor = sharedPref.edit();
                                                     editor.putString("value", snapshot.getId());
@@ -265,15 +268,24 @@ public class LogIn extends AppCompatActivity {
                     //skip login condition
                     sp.edit().putBoolean("logged", true).apply();
                     //add notification tag
-                    JSONObject tags = new JSONObject();
+//                    JSONObject tags = new JSONObject();
+////                    try {
+////                        tags.put("logged_in",true);
+////
+////                    } catch (JSONException e) {
+////                        e.printStackTrace();
+////                    }
+////                    OneSignal.sendTags(tags);
+                    JSONObject tags1 = new JSONObject();
                     try {
-                        tags.put("logged_in",true);
+                        tags1.put("user_id", "\"LID\"");
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    OneSignal.sendTags(tags);
+                    OneSignal.sendTags(tags1);
                     //next activity
-                    startActivity(new Intent(LogIn.this, HomeActivity.class));
+                    startActivity(new Intent(LogIn.this, IntroActivity.class));
                     finish();
                     login_progressBar.setVisibility(View.INVISIBLE);
                 }

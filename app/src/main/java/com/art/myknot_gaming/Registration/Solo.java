@@ -294,7 +294,7 @@ public class Solo extends AppCompatActivity implements AdapterView.OnItemSelecte
                 break;
             case 1:
                 assert vibrator != null;
-                vibrator.vibrate(50);
+                vibrator.vibrate(75);
                 break;
         }
     }

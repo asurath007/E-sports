@@ -107,7 +107,7 @@
     <string name="no_new_notifications">- No New Notifications -</string>
     <string name="msg_welcome">Welcome message</string>
     <string name="admin_id">Admin-Id</string>
-    <string name="login_consent"> I agree with the <a href ="https://myknot-pubggaming.online/public/privacy.html"> Privacy Policy</a> and <a href="https://myknot-pubggaming.online/public/terms.html">Terms of Service</a> of MyKnot Gaming Services </string>
+    <string name="login_consent"> I agree with the <a href="https://myknot-pubggaming.online/public/privacy.html"> Privacy Policy</a> and <a href="https://myknot-pubggaming.online/public/terms.html">Terms of Service</a> of MyKnot Gaming Services </string>
     <string name="partner_with_us_and_host_your_own_custom_games_with_least_worries">Partner with us and host your own custom games with least worries</string>
     <string name="yearly_pack_12_months">Yearly pack (12 months)</string>
     <string name="submit_for_review">Submit for review</string>
@@ -124,4 +124,20 @@
     <string name="i_don_t_have_an_account">- I don\'t have an Account</string>
     <string name="i_forgot_my_password">- i forgot my password</string>
 
+
+    <string name="title_activity_welcome">Home Screen</string>
+
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Hello User!</string>
+    <string name="slide_1_desc">Welcome to the easiest way to register for a custom game of your favourite BATTLE ROYALE !</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+    <string name="completed">Completed</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="upcoming_fragment">Upcoming Fragment</string>
+    <string name="completed_fragment">Completed fragment</string>
+    <string name="no_upcoming_matches">No Upcoming Matches</string>
 </resources>

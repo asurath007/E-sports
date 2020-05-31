@@ -220,7 +220,7 @@ public class HomeActivity extends AppCompatActivity implements PaymentResultList
         switch (level){
             case 0:
                 assert vibrator != null;
-                vibrator.vibrate(25);
+                vibrator.vibrate(15);
                 break;
             case 1:
                 assert vibrator != null;

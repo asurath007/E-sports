@@ -152,7 +152,7 @@ public class Profile extends AppCompatActivity {
         btn_prof_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                vibrations(0);
                 //UPDATE & save to db
                 Log.d("prof","save");
                 saveDetails();
@@ -218,6 +218,16 @@ public class Profile extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 OneSignal.sendTags(tags);
+                OneSignal.getTags(new OneSignal.GetTagsHandler() {
+                    @Override
+                    public void tagsAvailable(JSONObject tags) {
+                        OneSignal.deleteTag("key1");
+                        OneSignal.deleteTag("matchID");
+                    }
+                });
+                if ((dialog!=null)&&(dialog.isShowing())) {
+                    dialog.dismiss();
+                }
                 //show login screen
                 Intent intent = new Intent(Profile.this, LogIn.class);
 //                        intent.putExtra("logged",false);

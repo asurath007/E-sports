@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -16,8 +16,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Admin.AdminLogin" android:label="Admin Sign-in"/>
-        <activity android:name=".Admin.IntroAdmin" android:label="MyKnot Gaming Partnership" android:parentActivityName=".Admin.AdminLogin"/>
+        <activity
+            android:name=".Intro.Tutorials"
+            android:label="Tutorials" />
+        <activity
+            android:name=".Intro.IntroActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Admin.AdminLogin"
+            android:label="Admin Sign-in" />
+        <activity
+            android:name=".Admin.IntroAdmin"
+            android:label="MyKnot Gaming Partnership"
+            android:parentActivityName=".Admin.AdminLogin" />
 
         <meta-data
             android:name="com.onesignal.NotificationOpened.DEFAULT"
@@ -25,8 +36,9 @@
         <meta-data
             android:name="com.razorpay.ApiKey"
             android:value="@string/razor_pay_test_api_key" /> <!-- actvities -->
-        <activity android:name=".Notifications.Notifications"
-            android:label="Notifications"/>
+        <activity
+            android:name=".Notifications.Notifications"
+            android:label="Notifications" />
         <activity
             android:name=".DashBoard.DashBoard"
             android:label="Dashboard" />
@@ -57,7 +69,6 @@
             android:name=".Registration.DuoMapSelector"
             android:label="Duo"
             android:parentActivityName=".Main2Activity" />
-
         <activity android:name=".Payment.RazorPay_Activity" />
         <activity
             android:name=".AfterPayment.AfterPayment"
@@ -67,24 +78,29 @@
             android:parentActivityName=".AfterPayment.AfterPayment" />
         <activity
             android:name=".Main2Activity"
-            android:parentActivityName=".HomeActivity" android:label="Game Modes"/>
-        <activity android:name=".HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="Game Modes"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Login.SignUp"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Login.LogIn"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".Admin.AdminAddMatchDetail" android:label="Match Details" android:parentActivityName=".Admin.AdminAddMatch"/>
-            <activity
-                android:name=".Admin.AdminAddMatch"
-                android:label="Admin Panel"
-                android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".StartScreen"
+        <activity
+            android:name=".Admin.AdminAddMatchDetail"
+            android:label="Match Details"
+            android:parentActivityName=".Admin.AdminAddMatch" />
+        <activity
+            android:name=".Admin.AdminAddMatch"
+            android:label="Admin Panel"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StartScreen"
             android:theme="@style/AppTheme.NoActionBar">
-        <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
